@@ -550,7 +550,6 @@
   }
 
   .bp-table tr:last-child td { border-bottom: none; }
-  .bp-table tr:hover td { background: var(--light-blue); }
   .bp-table td:first-child { color: var(--black); font-weight: 500; }
 
   /* =====================
@@ -1618,6 +1617,7 @@
       <table class="bp-table">
         <thead>
           <tr>
+            <th style="width:40px;">#</th>
             <th>Scenario</th>
             <th>Recommended Approach</th>
             <th>Why</th>
@@ -1625,31 +1625,37 @@
         </thead>
         <tbody>
           <tr>
+            <td style="color:var(--text-muted);font-weight:400;font-size:13px;">1</td>
             <td>New form, any complexity</td>
             <td>Edge Delivery + Universal Editor</td>
             <td>Adobe's 2025 default. Fast delivery, Lighthouse 100, no build pipeline overhead.</td>
           </tr>
           <tr>
+            <td style="color:var(--text-muted);font-weight:400;font-size:13px;">2</td>
             <td>Non-technical content team needs a form fast</td>
             <td>Edge Delivery + Document-Based (Excel/Sheets)</td>
             <td>No AEM training required. Data routes directly to spreadsheets. Live in minutes.</td>
           </tr>
           <tr>
+            <td style="color:var(--text-muted);font-weight:400;font-size:13px;">3</td>
             <td>Complex form with AEM Workflow, FDM, Adobe Sign</td>
             <td>Adaptive Forms Core Components or EDS + Universal Editor</td>
             <td>Full backend capabilities, advanced rules editor, multi-panel flows.</td>
           </tr>
           <tr>
+            <td style="color:var(--text-muted);font-weight:400;font-size:13px;">4</td>
             <td>Form embedded in React app or native mobile</td>
             <td>Headless Adaptive Forms</td>
             <td>One form definition, any UI. React hooks provided. AEM manages all logic.</td>
           </tr>
           <tr>
+            <td style="color:var(--text-muted);font-weight:400;font-size:13px;">5</td>
             <td>Regulated submission requiring PDF archive</td>
             <td>Enable Document of Record on Adaptive Forms</td>
             <td>Auto-generates tamper-proof PDF of every submission. Compliance-ready.</td>
           </tr>
           <tr>
+            <td style="color:var(--text-muted);font-weight:400;font-size:13px;">6</td>
             <td>Existing Foundation Component forms</td>
             <td>Maintain; plan migration to Core Components</td>
             <td>Foundation is not deprecated but receives no new features.</td>
