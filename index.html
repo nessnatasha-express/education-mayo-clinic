@@ -312,6 +312,10 @@
     font-size: 1.05rem;
   }
 
+  #what-are-aem-forms .section-header p {
+    max-width: 100%;
+  }
+
   /* =====================
      1. SUMMARY
   ===================== */
@@ -465,7 +469,7 @@
      3. BEST PRACTICES
   ===================== */
   #best-practices {
-    background: var(--white);
+    background: var(--light-blue);
   }
 
   .bp-two-col {
@@ -542,17 +546,18 @@
     color: var(--gray-text);
     border-bottom: 1px solid var(--gray-line);
     vertical-align: top;
+    background: var(--white);
   }
 
   .bp-table tr:last-child td { border-bottom: none; }
-  .bp-table tr:nth-child(even) td { background: var(--gray-light); }
+  .bp-table tr:hover td { background: var(--light-blue); }
   .bp-table td:first-child { color: var(--black); font-weight: 500; }
 
   /* =====================
      4. EDUCATION BY PERSONA
   ===================== */
   #education {
-    background: var(--light-blue);
+    background: var(--white);
   }
 
   .persona-tabs {
@@ -854,6 +859,72 @@
     margin: 3rem 0;
   }
 
+  /* =====================
+     ACCORDION
+  ===================== */
+  .accordion {
+    border: 1px solid var(--gray-line);
+    border-radius: 8px;
+    overflow: hidden;
+    max-width: 720px;
+  }
+
+  .acc-item {
+    border-bottom: 1px solid var(--gray-line);
+  }
+
+  .acc-item:last-child {
+    border-bottom: none;
+  }
+
+  .acc-trigger {
+    width: 100%;
+    background: var(--white);
+    border: none;
+    padding: 1.1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1rem;
+    color: var(--black);
+    text-align: left;
+    transition: background 0.15s;
+  }
+
+  .acc-trigger:hover {
+    background: var(--light-blue);
+  }
+
+  .acc-trigger[aria-expanded="true"] {
+    background: var(--light-blue);
+    color: var(--brand-blue);
+  }
+
+  .acc-chevron {
+    flex-shrink: 0;
+    color: var(--gray-text);
+    transition: transform 0.2s ease;
+  }
+
+  .acc-trigger[aria-expanded="true"] .acc-chevron {
+    transform: rotate(180deg);
+    color: var(--brand-blue);
+  }
+
+  .acc-body {
+    display: none;
+    padding: 0 1.5rem 1.5rem;
+    background: var(--white);
+    border-top: 1px solid var(--gray-line);
+  }
+
+  .acc-body p {
+    font-size: 14px;
+    padding-top: 1rem;
+  }
+
 </style>
 </head>
 <body>
@@ -897,8 +968,8 @@
     <ul class="nav-links">
       <li><a href="#summary">Summary</a></li>
       <li><a href="#what-are-aem-forms">AEM Forms</a></li>
-      <li><a href="#best-practices">Best Practices</a></li>
       <li><a href="#education">Education</a></li>
+      <li><a href="#best-practices">Best Practices</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
 
@@ -946,22 +1017,6 @@
       <span class="section-eyebrow">01 — Summary</span>
       <h2>Why AEM Forms Matters for Mayo Clinic</h2>
       <p>AEM Forms is Adobe's enterprise platform for building, publishing, and automating digital forms and communications. For Mayo Clinic, it is the infrastructure that powers patient enrollment, staff intake, data capture, and multi-channel communications — at scale, on brand, and with full governance.</p>
-    </div>
-
-    <!-- WHAT IS AN AEM FORM -->
-    <div style="background:var(--light-blue);border-radius:10px;padding:2rem 2.5rem;margin-bottom:3rem;display:flex;gap:2rem;align-items:flex-start;">
-      <div style="flex-shrink:0;width:48px;height:48px;background:var(--brand-blue);border-radius:8px;display:flex;align-items:center;justify-content:center;">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="3" y="3" width="18" height="18" rx="2" stroke="white" stroke-width="1.5" fill="none"/>
-          <line x1="7" y1="8" x2="17" y2="8" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="7" y1="12" x2="17" y2="12" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="7" y1="16" x2="13" y2="16" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-      </div>
-      <div>
-        <h3 style="font-size:1.15rem;margin-bottom:0.5rem;color:var(--dark-navy);">What is an AEM Form?</h3>
-        <p style="font-size:14.5px;max-width:760px;margin:0;">An AEM Form is a digital data-capture experience built inside Adobe Experience Manager. It can be a simple contact form or a complex multi-step enrollment flow — rendered on any device, prefilled from backend systems, validated in real time, and connected to downstream workflows for processing and storage. Unlike a standalone form tool, AEM Forms is integrated directly into your content, data, and workflow infrastructure, meaning every form submission becomes a structured event your organization can act on immediately.</p>
-      </div>
     </div>
 
     <div class="summary-grid">
@@ -1070,13 +1125,13 @@
     <div class="section-header">
       <span class="section-eyebrow">02 — What are AEM Forms</span>
       <h2>Understanding the Platform</h2>
-      <p>AEM Forms is not a single form builder. It is a suite of four distinct delivery architectures, each suited to different complexity, team skill, and performance requirements.</p>
+      <p style="max-width:100%;">An AEM Form is a digital data-capture experience built inside Adobe Experience Manager — it can be a simple contact form or a complex multi-step enrollment flow, rendered on any device, prefilled from backend systems, validated in real time, and connected to downstream workflows for processing and storage. Unlike a standalone form tool, AEM Forms is integrated directly into your content, data, and workflow infrastructure, meaning every form submission becomes a structured event your organization can act on immediately.</p>
     </div>
 
     <div class="aem-explainer">
       <div class="explainer-stat-block">
         <div class="big-num">4</div>
-        <p>Distinct implementation architectures, each with different authoring methods and use cases.</p>
+        <p>AEM Forms is not a single form builder. It is a suite of four distinct delivery architectures, each suited to different complexity, team skill, and performance requirements.</p>
         <hr class="divider-line">
         <div class="mini-stat">
           <div class="label">Adobe's Default (2025)</div>
@@ -1173,102 +1228,7 @@
         <p style="font-size:13.5px;">Behind the firewall. Submitted data runs through AEM Workflows, connects to external systems (CRM, ERP, databases), triggers notifications, and stores compliant records.</p>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ===================== 3. BEST PRACTICES ===================== -->
-<section id="best-practices">
-  <div class="section-wrap">
-    <div class="section-header">
-      <span class="section-eyebrow">03 — Best Practices</span>
-      <h2>What to Do and What to Avoid</h2>
-      <p>Sourced from Adobe's official Experience League documentation and Merkle implementation experience. Applies across form types unless noted.</p>
-    </div>
-
-    <div class="bp-two-col">
-      <div class="bp-block">
-        <div class="bp-block-header do">
-          <span>✓</span> Do This
-        </div>
-        <ul class="bp-list">
-          <li><span class="icon">✓</span>Use Core Components for all new Adaptive Forms builds</li>
-          <li><span class="icon">✓</span>Start all new projects with Edge Delivery + Universal Editor</li>
-          <li><span class="icon">✓</span>Define your Form Data Model before building form fields</li>
-          <li><span class="icon">✓</span>Upload packages via Forms Manager UI, not CRX Package Manager</li>
-          <li><span class="icon">✓</span>Create overlays in <code style="font-size:12px;background:#f0f0f0;padding:1px 5px;border-radius:3px;">/app</code> folders — never modify <code style="font-size:12px;background:#f0f0f0;padding:1px 5px;border-radius:3px;">/libs</code></li>
-          <li><span class="icon">✓</span>Enable Document of Record for all compliance-sensitive submissions</li>
-          <li><span class="icon">✓</span>Add CAPTCHA (reCAPTCHA) on all public-facing forms</li>
-          <li><span class="icon">✓</span>Use fragment-based authoring to reuse common field groups</li>
-          <li><span class="icon">✓</span>Connect Adobe Analytics to track field-level abandonment</li>
-          <li><span class="icon">✓</span>Test mobile rendering before every publish</li>
-          <li><span class="icon">✓</span>Plan templates and custom component requirements before building</li>
-          <li><span class="icon">✓</span>Target Lighthouse score 100 on all Edge Delivery forms</li>
-        </ul>
-      </div>
-      <div class="bp-block">
-        <div class="bp-block-header dont">
-          <span>✕</span> Avoid This
-        </div>
-        <ul class="bp-list">
-          <li><span class="icon">✕</span>Build new forms on Foundation Components</li>
-          <li><span class="icon">✕</span>Modify anything in <code style="font-size:12px;background:#f0f0f0;padding:1px 5px;border-radius:3px;">/libs</code> directly</li>
-          <li><span class="icon">✕</span>Use CRX Package Manager for form package uploads</li>
-          <li><span class="icon">✕</span>Use document-based authoring for complex multi-panel, multi-step forms</li>
-          <li><span class="icon">✕</span>Skip server-side validation — client + server both required</li>
-          <li><span class="icon">✕</span>Assume offline sync works without testing Forms Workspace explicitly</li>
-          <li><span class="icon">✕</span>Stack sequential storage API calls — batch related data</li>
-          <li><span class="icon">✕</span>Deploy to production without Lighthouse performance verification</li>
-          <li><span class="icon">✕</span>Use Foundation Components for new headless API integrations</li>
-          <li><span class="icon">✕</span>Ignore field-level analytics — abandonment data is actionable</li>
-          <li><span class="icon">✕</span>Launch forms without testing Adobe Sign integration end-to-end</li>
-          <li><span class="icon">✕</span>Mix build tools (Vite, Webpack) into Edge Delivery projects</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="bp-table-wrap">
-      <table class="bp-table">
-        <thead>
-          <tr>
-            <th>Scenario</th>
-            <th>Recommended Approach</th>
-            <th>Why</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>New form, any complexity</td>
-            <td>Edge Delivery + Universal Editor</td>
-            <td>Adobe's 2025 default. Fast delivery, Lighthouse 100, no build pipeline overhead.</td>
-          </tr>
-          <tr>
-            <td>Non-technical content team needs a form fast</td>
-            <td>Edge Delivery + Document-Based (Excel/Sheets)</td>
-            <td>No AEM training required. Data routes directly to spreadsheets. Live in minutes.</td>
-          </tr>
-          <tr>
-            <td>Complex form with AEM Workflow, FDM, Adobe Sign</td>
-            <td>Adaptive Forms Core Components or EDS + Universal Editor</td>
-            <td>Full backend capabilities, advanced rules editor, multi-panel flows.</td>
-          </tr>
-          <tr>
-            <td>Form embedded in React app or native mobile</td>
-            <td>Headless Adaptive Forms</td>
-            <td>One form definition, any UI. React hooks provided. AEM manages all logic.</td>
-          </tr>
-          <tr>
-            <td>Regulated submission requiring PDF archive</td>
-            <td>Enable Document of Record on Adaptive Forms</td>
-            <td>Auto-generates tamper-proof PDF of every submission. Compliance-ready.</td>
-          </tr>
-          <tr>
-            <td>Existing Foundation Component forms</td>
-            <td>Maintain; plan migration to Core Components</td>
-            <td>Foundation is not deprecated but receives no new features.</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
   </div>
 </section>
 
@@ -1276,7 +1236,7 @@
 <section id="education">
   <div class="section-wrap">
     <div class="section-header">
-      <span class="section-eyebrow">04 — Education by Persona</span>
+      <span class="section-eyebrow">03 — Education by Persona</span>
       <h2>Resources Tailored to Your Role</h2>
       <p>Select your role below to see curated tutorials, documentation, videos, and tools relevant to how you work with AEM Forms.</p>
     </div>
@@ -1599,6 +1559,107 @@
   </div>
 </section>
 
+<!-- ===================== 3. BEST PRACTICES ===================== -->
+<section id="best-practices">
+  <div class="section-wrap">
+    <div class="section-header">
+      <span class="section-eyebrow">04 — Best Practices</span>
+      <h2>What to Do and What to Avoid</h2>
+      <p>Sourced from Adobe's official Experience League documentation and Merkle implementation experience. Applies across form types unless noted.</p>
+    </div>
+
+    <div class="bp-two-col">
+      <div class="bp-block" style="background:var(--white);">
+        <div class="bp-block-header do">
+          <span>✓</span> Do This
+        </div>
+        <ul class="bp-list">
+          <li><span class="icon">✓</span>Use Core Components for all new Adaptive Forms builds</li>
+          <li><span class="icon">✓</span>Start all new projects with Edge Delivery + Universal Editor</li>
+          <li><span class="icon">✓</span>Define your Form Data Model before building form fields</li>
+          <li><span class="icon">✓</span>Upload packages via Forms Manager UI, not CRX Package Manager</li>
+          <li><span class="icon">✓</span>Create overlays in <code style="font-size:12px;background:#f0f0f0;padding:1px 5px;border-radius:3px;">/app</code> folders — never modify <code style="font-size:12px;background:#f0f0f0;padding:1px 5px;border-radius:3px;">/libs</code></li>
+          <li><span class="icon">✓</span>Enable Document of Record for all compliance-sensitive submissions</li>
+          <li><span class="icon">✓</span>Add CAPTCHA (reCAPTCHA) on all public-facing forms</li>
+          <li><span class="icon">✓</span>Use fragment-based authoring to reuse common field groups</li>
+          <li><span class="icon">✓</span>Connect Adobe Analytics to track field-level abandonment</li>
+          <li><span class="icon">✓</span>Test mobile rendering before every publish</li>
+          <li><span class="icon">✓</span>Plan templates and custom component requirements before building</li>
+          <li><span class="icon">✓</span>Target Lighthouse score 100 on all Edge Delivery forms</li>
+        </ul>
+      </div>
+      <div class="bp-block" style="background:var(--white);">
+        <div class="bp-block-header dont">
+          <span>✕</span> Avoid This
+        </div>
+        <ul class="bp-list">
+          <li><span class="icon">✕</span>Build new forms on Foundation Components</li>
+          <li><span class="icon">✕</span>Modify anything in <code style="font-size:12px;background:#f0f0f0;padding:1px 5px;border-radius:3px;">/libs</code> directly</li>
+          <li><span class="icon">✕</span>Use CRX Package Manager for form package uploads</li>
+          <li><span class="icon">✕</span>Use document-based authoring for complex multi-panel, multi-step forms</li>
+          <li><span class="icon">✕</span>Skip server-side validation — client + server both required</li>
+          <li><span class="icon">✕</span>Assume offline sync works without testing Forms Workspace explicitly</li>
+          <li><span class="icon">✕</span>Stack sequential storage API calls — batch related data</li>
+          <li><span class="icon">✕</span>Deploy to production without Lighthouse performance verification</li>
+          <li><span class="icon">✕</span>Use Foundation Components for new headless API integrations</li>
+          <li><span class="icon">✕</span>Ignore field-level analytics — abandonment data is actionable</li>
+          <li><span class="icon">✕</span>Launch forms without testing Adobe Sign integration end-to-end</li>
+          <li><span class="icon">✕</span>Mix build tools (Vite, Webpack) into Edge Delivery projects</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-top:2.5rem;margin-bottom:1rem;">
+      <h3 style="font-size:1.2rem;margin-bottom:0.4rem;">Which Approach Is Right for Your Use Case?</h3>
+      <p style="font-size:14px;max-width:680px;">Use this reference table to match your specific scenario to the recommended AEM Forms delivery approach. Each row maps a common Mayo Clinic use case to the right architecture and explains the reasoning.</p>
+    </div>
+
+    <div class="bp-table-wrap" style="background:var(--white);">
+      <table class="bp-table">
+        <thead>
+          <tr>
+            <th>Scenario</th>
+            <th>Recommended Approach</th>
+            <th>Why</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>New form, any complexity</td>
+            <td>Edge Delivery + Universal Editor</td>
+            <td>Adobe's 2025 default. Fast delivery, Lighthouse 100, no build pipeline overhead.</td>
+          </tr>
+          <tr>
+            <td>Non-technical content team needs a form fast</td>
+            <td>Edge Delivery + Document-Based (Excel/Sheets)</td>
+            <td>No AEM training required. Data routes directly to spreadsheets. Live in minutes.</td>
+          </tr>
+          <tr>
+            <td>Complex form with AEM Workflow, FDM, Adobe Sign</td>
+            <td>Adaptive Forms Core Components or EDS + Universal Editor</td>
+            <td>Full backend capabilities, advanced rules editor, multi-panel flows.</td>
+          </tr>
+          <tr>
+            <td>Form embedded in React app or native mobile</td>
+            <td>Headless Adaptive Forms</td>
+            <td>One form definition, any UI. React hooks provided. AEM manages all logic.</td>
+          </tr>
+          <tr>
+            <td>Regulated submission requiring PDF archive</td>
+            <td>Enable Document of Record on Adaptive Forms</td>
+            <td>Auto-generates tamper-proof PDF of every submission. Compliance-ready.</td>
+          </tr>
+          <tr>
+            <td>Existing Foundation Component forms</td>
+            <td>Maintain; plan migration to Core Components</td>
+            <td>Foundation is not deprecated but receives no new features.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
 <!-- ===================== 5. CONTACT ===================== -->
 <section id="contact">
   <div class="section-wrap">
@@ -1608,78 +1669,82 @@
       <p>Whether you need technical help, want to talk to your account team, or are looking to connect with the broader AEM community, you're in the right place.</p>
     </div>
 
-    <div class="contact-grid">
+    <div class="accordion" id="contact-accordion">
+
       <!-- Adobe Contact -->
-      <div class="contact-card" style="text-align:left;">
-        <div class="contact-icon" style="background:rgba(242,58,29,0.08);margin:0 0 1rem 0;">
-          <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M19.5 3H29L19 29L13.5 14.5L19.5 3Z" fill="#FA0F00"/>
-            <path d="M12.5 3H3L13 29L18.5 14.5L12.5 3Z" fill="#FA0F00"/>
-            <path d="M16 17.5L11 29H21L16 17.5Z" fill="#FA0F00" opacity="0.6"/>
+      <div class="acc-item">
+        <button class="acc-trigger" onclick="toggleAcc(this)" aria-expanded="false">
+          <span>Adobe Contact</span>
+          <svg class="acc-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-        </div>
-        <h3>Adobe Contact</h3>
-        <p>Reach your Adobe account team for licensing questions, product roadmap updates, and enterprise support escalations.</p>
-        <div class="contact-detail">Account Executive: <a href="mailto:adobe-mayo@adobe.com">adobe-mayo@adobe.com</a></div>
-        <div class="contact-detail">Enterprise Support: <a href="https://helpx.adobe.com/contact/enterprise-support.html" target="_blank">helpx.adobe.com/enterprise-support</a></div>
-        <div style="margin-top:1.25rem;">
-          <a href="https://helpx.adobe.com/contact/enterprise-support.html" target="_blank" class="btn-outline" style="font-size:13px;">Open Support Case</a>
+        </button>
+        <div class="acc-body">
+          <p>Reach your Adobe account team for licensing questions, product roadmap updates, and enterprise support escalations.</p>
+          <div class="contact-detail" style="margin-top:0.75rem;">Account Executive: <a href="mailto:adobe-mayo@adobe.com">adobe-mayo@adobe.com</a></div>
+          <div class="contact-detail">Enterprise Support: <a href="https://helpx.adobe.com/contact/enterprise-support.html" target="_blank">helpx.adobe.com/enterprise-support</a></div>
+          <div style="margin-top:1.25rem;">
+            <a href="https://helpx.adobe.com/contact/enterprise-support.html" target="_blank" class="btn-outline" style="font-size:13px;">Open Support Case</a>
+          </div>
         </div>
       </div>
 
       <!-- Merkle Contact -->
-      <div class="contact-card" style="text-align:left;">
-        <div class="contact-icon" style="background:rgba(242,58,29,0.06);margin:0 0 1rem 0;">
-          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 639 81" height="20" width="20">
-            <path fill="#F23A1D" d="M43.8,36.4H0l43.8,44.4V36.4z"/>
+      <div class="acc-item">
+        <button class="acc-trigger" onclick="toggleAcc(this)" aria-expanded="false">
+          <span>Merkle Contact</span>
+          <svg class="acc-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-        </div>
-        <h3>Merkle Contact</h3>
-        <p>Your Merkle engagement team for AEM Forms implementation questions, project delivery, and strategic guidance.</p>
-        <div class="contact-detail">Engagement Lead: <a href="mailto:aem-mayo@merkle.com">aem-mayo@merkle.com</a></div>
-        <div class="contact-detail">Adobe Practice: <a href="https://www.merkle.com/en/expertise/adobe.html" target="_blank">merkle.com/adobe</a></div>
-        <div style="margin-top:1.25rem;">
-          <a href="https://www.merkle.com/en/expertise/adobe.html" target="_blank" class="btn-outline" style="font-size:13px;">Adobe Practice Page</a>
+        </button>
+        <div class="acc-body">
+          <p>Your Merkle engagement team for AEM Forms implementation questions, project delivery, and strategic guidance.</p>
+          <div class="contact-detail" style="margin-top:0.75rem;">Engagement Lead: <a href="mailto:aem-mayo@merkle.com">aem-mayo@merkle.com</a></div>
+          <div class="contact-detail">Adobe Practice: <a href="https://www.merkle.com/en/expertise/adobe.html" target="_blank">merkle.com/adobe</a></div>
+          <div style="margin-top:1.25rem;">
+            <a href="https://www.merkle.com/en/expertise/adobe.html" target="_blank" class="btn-outline" style="font-size:13px;">Adobe Practice Page</a>
+          </div>
         </div>
       </div>
 
       <!-- Forums -->
-      <div class="contact-card" style="text-align:left;">
-        <div class="contact-icon" style="background:rgba(1,45,97,0.07);margin:0 0 1rem 0;">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="#012D61" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-            <line x1="8" y1="9" x2="16" y2="9" stroke="#012D61" stroke-width="1.5" stroke-linecap="round"/>
-            <line x1="8" y1="13" x2="13" y2="13" stroke="#012D61" stroke-width="1.5" stroke-linecap="round"/>
+      <div class="acc-item">
+        <button class="acc-trigger" onclick="toggleAcc(this)" aria-expanded="false">
+          <span>Community Forums</span>
+          <svg class="acc-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-        </div>
-        <h3>Community Forums</h3>
-        <p>Peer support and expert guidance from the Adobe Experience League community. Search existing threads or post a question.</p>
-        <div class="contact-detail"><a href="https://experienceleaguecommunities.adobe.com/t5/adobe-experience-manager-forms/ct-p/adobe-experience-manager-forms-community" target="_blank">AEM Forms Community</a></div>
-        <div class="contact-detail"><a href="https://experienceleague.adobe.com/en/docs/experience-manager-learn/forms/overview" target="_blank">Tutorial Library</a></div>
-        <div class="contact-detail"><a href="https://www.aem.live/docs/faq" target="_blank">Edge Delivery FAQ</a></div>
-        <div style="margin-top:1.25rem;">
-          <a href="https://experienceleaguecommunities.adobe.com/t5/adobe-experience-manager-forms/ct-p/adobe-experience-manager-forms-community" target="_blank" class="btn-outline" style="font-size:13px;">Join the Community</a>
+        </button>
+        <div class="acc-body">
+          <p>Peer support and expert guidance from the Adobe Experience League community. Search existing threads or post a question.</p>
+          <div class="contact-detail" style="margin-top:0.75rem;"><a href="https://experienceleaguecommunities.adobe.com/t5/adobe-experience-manager-forms/ct-p/adobe-experience-manager-forms-community" target="_blank">AEM Forms Community</a></div>
+          <div class="contact-detail"><a href="https://experienceleague.adobe.com/en/docs/experience-manager-learn/forms/overview" target="_blank">Tutorial Library</a></div>
+          <div class="contact-detail"><a href="https://www.aem.live/docs/faq" target="_blank">Edge Delivery FAQ</a></div>
+          <div style="margin-top:1.25rem;">
+            <a href="https://experienceleaguecommunities.adobe.com/t5/adobe-experience-manager-forms/ct-p/adobe-experience-manager-forms-community" target="_blank" class="btn-outline" style="font-size:13px;">Join the Community</a>
+          </div>
         </div>
       </div>
 
       <!-- Webinars -->
-      <div class="contact-card" style="text-align:left;">
-        <div class="contact-icon" style="background:rgba(1,45,97,0.07);margin:0 0 1rem 0;">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="2" y="3" width="20" height="14" rx="2" stroke="#012D61" stroke-width="1.5" fill="none"/>
-            <path d="M8 21h8M12 17v4" stroke="#012D61" stroke-width="1.5" stroke-linecap="round"/>
-            <polygon points="10,8 16,11 10,14" fill="#012D61"/>
+      <div class="acc-item">
+        <button class="acc-trigger" onclick="toggleAcc(this)" aria-expanded="false">
+          <span>Webinars &amp; Events</span>
+          <svg class="acc-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-        </div>
-        <h3>Webinars &amp; Events</h3>
-        <p>Live and recorded sessions from Adobe and Merkle covering AEM Forms capabilities, updates, and implementation guidance.</p>
-        <div class="contact-detail"><a href="https://experienceleague.adobe.com/en/docs/events/experience-manager-gems-recordings/gems2024/edge-delivery-for-aem-forms" target="_blank">AEM Gems: EDS Forms Recording</a></div>
-        <div class="contact-detail"><a href="https://experienceleague.adobe.com/events" target="_blank">Upcoming Adobe Events</a></div>
-        <div class="contact-detail"><a href="https://www.merkle.com/en/thought-leadership/events.html" target="_blank">Merkle Events Calendar</a></div>
-        <div style="margin-top:1.25rem;">
-          <a href="https://experienceleague.adobe.com/events" target="_blank" class="btn-outline" style="font-size:13px;">View Upcoming Webinars</a>
+        </button>
+        <div class="acc-body">
+          <p>Live and recorded sessions from Adobe and Merkle covering AEM Forms capabilities, updates, and implementation guidance.</p>
+          <div class="contact-detail" style="margin-top:0.75rem;"><a href="https://experienceleague.adobe.com/en/docs/events/experience-manager-gems-recordings/gems2024/edge-delivery-for-aem-forms" target="_blank">AEM Gems: EDS Forms Recording</a></div>
+          <div class="contact-detail"><a href="https://experienceleague.adobe.com/events" target="_blank">Upcoming Adobe Events</a></div>
+          <div class="contact-detail"><a href="https://www.merkle.com/en/thought-leadership/events.html" target="_blank">Merkle Events Calendar</a></div>
+          <div style="margin-top:1.25rem;">
+            <a href="https://experienceleague.adobe.com/events" target="_blank" class="btn-outline" style="font-size:13px;">View Upcoming Webinars</a>
+          </div>
         </div>
       </div>
+
     </div>
 
   </div>
@@ -1750,6 +1815,20 @@
 </footer>
 
 <script>
+  function toggleAcc(trigger) {
+    const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+    // Close all
+    document.querySelectorAll('.acc-trigger').forEach(t => {
+      t.setAttribute('aria-expanded', 'false');
+      t.nextElementSibling.style.display = 'none';
+    });
+    // Open clicked if it was closed
+    if (!isOpen) {
+      trigger.setAttribute('aria-expanded', 'true');
+      trigger.nextElementSibling.style.display = 'block';
+    }
+  }
+
   function switchTab(persona) {
     // Deactivate all tabs and panels
     document.querySelectorAll('.persona-tab').forEach(t => t.classList.remove('active'));
