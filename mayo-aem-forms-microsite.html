@@ -1,0 +1,1789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AEM Forms | Mayo Clinic Digital Enablement</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@300;400;500&display=swap');
+
+  :root {
+    --black:       #080808;
+    --dark-navy:   #0D0D33;
+    --brand-blue:  #012D61;
+    --mid-blue:    #0057B8;
+    --light-blue:  #E1F0FF;
+    --white:       #ffffff;
+    --gray-line:   #D8D8D8;
+    --gray-text:   #5A5A5A;
+    --gray-light:  #F5F5F5;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--black);
+    background: var(--white);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: normal;
+    line-height: 1.25;
+    color: var(--black);
+  }
+
+  h1 { font-size: 3rem; letter-spacing: -0.5px; }
+  h2 { font-size: 2rem; letter-spacing: -0.3px; }
+  h3 { font-size: 1.3rem; }
+  h4 { font-size: 1.05rem; }
+
+  p { color: var(--gray-text); line-height: 1.7; }
+
+  a { text-decoration: none; color: var(--brand-blue); }
+  a:hover { text-decoration: underline; }
+
+  /* =====================
+     STICKY NAV
+  ===================== */
+  #top-nav {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-line);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+
+  .logo-lockup {
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+
+  .logo-divider {
+    width: 1px;
+    height: 32px;
+    background: var(--gray-line);
+    margin: 0 1rem;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    list-style: none;
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 0 1rem;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    color: var(--black);
+    line-height: 64px;
+    border-bottom: 3px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+  }
+
+  .nav-links a:hover {
+    color: var(--brand-blue);
+    border-bottom-color: var(--brand-blue);
+    text-decoration: none;
+  }
+
+  /* =====================
+     HERO
+  ===================== */
+  #hero {
+    background: var(--dark-navy);
+    padding: 6rem 2rem 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #hero::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; bottom: 0;
+    width: 40%;
+    background: linear-gradient(135deg, transparent 0%, rgba(0,87,184,0.15) 100%);
+    pointer-events: none;
+  }
+
+  #hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--mid-blue), var(--brand-blue));
+  }
+
+  .hero-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .hero-label {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 4px 12px;
+    border-radius: 2px;
+    margin-bottom: 1.5rem;
+  }
+
+  #hero h1 {
+    color: var(--white);
+    font-size: 3.2rem;
+    margin-bottom: 1.25rem;
+    line-height: 1.15;
+  }
+
+  #hero h1 em {
+    font-style: normal;
+    color: #7DB4E8;
+  }
+
+  #hero p {
+    color: rgba(255,255,255,0.65);
+    font-size: 1.05rem;
+    margin-bottom: 2rem;
+    max-width: 480px;
+  }
+
+  .hero-cta-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .stat-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 1.5rem;
+  }
+
+  .stat-num {
+    font-family: Georgia, serif;
+    font-size: 2.2rem;
+    color: #7DB4E8;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+
+  .stat-label {
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.4;
+  }
+
+  /* =====================
+     BUTTONS
+  ===================== */
+  .btn-primary {
+    display: inline-block;
+    background: var(--brand-blue);
+    color: var(--white);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0.65rem 1.5rem;
+    border-radius: 24px;
+    border: 2px solid var(--brand-blue);
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    letter-spacing: 0.2px;
+    text-decoration: none;
+  }
+
+  .btn-primary:hover {
+    background: var(--mid-blue);
+    border-color: var(--mid-blue);
+    text-decoration: none;
+    color: var(--white);
+    transform: translateY(-1px);
+  }
+
+  .btn-outline {
+    display: inline-block;
+    background: transparent;
+    color: var(--brand-blue);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0.65rem 1.5rem;
+    border-radius: 24px;
+    border: 2px solid var(--brand-blue);
+    cursor: pointer;
+    transition: all 0.15s;
+    letter-spacing: 0.2px;
+    text-decoration: none;
+  }
+
+  .btn-outline:hover {
+    background: var(--brand-blue);
+    color: var(--white);
+    text-decoration: none;
+    transform: translateY(-1px);
+  }
+
+  .btn-outline-white {
+    display: inline-block;
+    background: transparent;
+    color: var(--white);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0.65rem 1.5rem;
+    border-radius: 24px;
+    border: 2px solid rgba(255,255,255,0.5);
+    cursor: pointer;
+    transition: all 0.15s;
+    letter-spacing: 0.2px;
+    text-decoration: none;
+  }
+
+  .btn-outline-white:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    color: var(--white);
+  }
+
+  /* =====================
+     SECTION SHARED
+  ===================== */
+  .section-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+
+  .section-eyebrow {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--mid-blue);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-header {
+    margin-bottom: 3rem;
+  }
+
+  .section-header h2 {
+    margin-bottom: 0.75rem;
+  }
+
+  .section-header p {
+    max-width: 620px;
+    font-size: 1.05rem;
+  }
+
+  /* =====================
+     1. SUMMARY
+  ===================== */
+  #summary {
+    background: var(--white);
+  }
+
+  .summary-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .summary-card {
+    border: 1px solid var(--gray-line);
+    border-top: 4px solid var(--brand-blue);
+    border-radius: 6px;
+    padding: 1.75rem;
+    background: var(--white);
+    transition: box-shadow 0.2s;
+  }
+
+  .summary-card:hover {
+    box-shadow: 0 6px 24px rgba(1,45,97,0.1);
+  }
+
+  .summary-card-icon {
+    width: 40px; height: 40px;
+    background: var(--light-blue);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    margin-bottom: 1rem;
+  }
+
+  .summary-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--black);
+  }
+
+  .summary-card p {
+    font-size: 14px;
+  }
+
+  /* =====================
+     2. WHAT ARE AEM FORMS
+  ===================== */
+  #what-are-aem-forms {
+    background: var(--light-blue);
+  }
+
+  .forms-type-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  .form-type-card {
+    background: var(--white);
+    border: 1px solid var(--gray-line);
+    border-radius: 8px;
+    padding: 1.5rem 1.75rem;
+    position: relative;
+    transition: box-shadow 0.2s;
+  }
+
+  .form-type-card:hover {
+    box-shadow: 0 4px 20px rgba(1,45,97,0.1);
+  }
+
+  .form-type-card .badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-bottom: 0.75rem;
+  }
+
+  .badge-rec { background: rgba(1,45,97,0.08); color: var(--brand-blue); border: 1px solid rgba(1,45,97,0.2); }
+  .badge-curr { background: rgba(0,87,184,0.08); color: var(--mid-blue); border: 1px solid rgba(0,87,184,0.2); }
+  .badge-leg { background: #f0f0f0; color: #888; border: 1px solid #ddd; }
+
+  .form-type-card h4 {
+    margin-bottom: 0.4rem;
+    color: var(--black);
+  }
+
+  .form-type-card p {
+    font-size: 13.5px;
+  }
+
+  .aem-explainer {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+    align-items: start;
+    margin-bottom: 3rem;
+  }
+
+  .explainer-stat-block {
+    background: var(--brand-blue);
+    border-radius: 10px;
+    padding: 2rem;
+    color: var(--white);
+  }
+
+  .explainer-stat-block .big-num {
+    font-family: Georgia, serif;
+    font-size: 3.5rem;
+    color: #7DB4E8;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .explainer-stat-block p {
+    color: rgba(255,255,255,0.7);
+    font-size: 14px;
+    margin-bottom: 1.5rem;
+  }
+
+  .explainer-stat-block .divider-line {
+    border: none;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    margin: 1.25rem 0;
+  }
+
+  .explainer-stat-block .mini-stat {
+    margin-bottom: 0.75rem;
+  }
+
+  .explainer-stat-block .mini-stat .label {
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 2px;
+  }
+
+  .explainer-stat-block .mini-stat .val {
+    font-size: 1.1rem;
+    font-family: Georgia, serif;
+    color: var(--white);
+  }
+
+  /* =====================
+     3. BEST PRACTICES
+  ===================== */
+  #best-practices {
+    background: var(--white);
+  }
+
+  .bp-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .bp-block {
+    border: 1px solid var(--gray-line);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .bp-block-header {
+    padding: 1rem 1.5rem;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .bp-block-header.do { background: rgba(0,120,80,0.06); color: #006644; border-bottom: 1px solid rgba(0,120,80,0.15); }
+  .bp-block-header.dont { background: rgba(200,30,30,0.05); color: #B00020; border-bottom: 1px solid rgba(200,30,30,0.12); }
+
+  .bp-list {
+    list-style: none;
+    padding: 0.5rem 0;
+  }
+
+  .bp-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.55rem 1.5rem;
+    font-size: 14px;
+    color: var(--gray-text);
+    border-bottom: 1px solid var(--gray-line);
+  }
+
+  .bp-list li:last-child { border-bottom: none; }
+
+  .bp-list li .icon { flex-shrink: 0; margin-top: 2px; font-size: 13px; }
+
+  .bp-table-wrap {
+    margin-top: 2rem;
+    border: 1px solid var(--gray-line);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .bp-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .bp-table th {
+    background: var(--dark-navy);
+    color: var(--white);
+    padding: 0.85rem 1.25rem;
+    text-align: left;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  }
+
+  .bp-table td {
+    padding: 0.8rem 1.25rem;
+    font-size: 13.5px;
+    color: var(--gray-text);
+    border-bottom: 1px solid var(--gray-line);
+    vertical-align: top;
+  }
+
+  .bp-table tr:last-child td { border-bottom: none; }
+  .bp-table tr:nth-child(even) td { background: var(--gray-light); }
+  .bp-table td:first-child { color: var(--black); font-weight: 500; }
+
+  /* =====================
+     4. EDUCATION BY PERSONA
+  ===================== */
+  #education {
+    background: var(--light-blue);
+  }
+
+  .persona-tabs {
+    display: flex;
+    gap: 0;
+    border: 1px solid var(--gray-line);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+    background: var(--white);
+  }
+
+  .persona-tab {
+    flex: 1;
+    padding: 1rem;
+    text-align: center;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--gray-text);
+    border-right: 1px solid var(--gray-line);
+    transition: all 0.15s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    user-select: none;
+  }
+
+  .persona-tab:last-child { border-right: none; }
+
+  .persona-tab .tab-icon { font-size: 1.4rem; }
+
+  .persona-tab:hover { background: var(--light-blue); color: var(--brand-blue); }
+
+  .persona-tab.active {
+    background: var(--brand-blue);
+    color: var(--white);
+  }
+
+  .persona-panel { display: none; }
+  .persona-panel.active { display: block; }
+
+  .persona-intro {
+    background: var(--white);
+    border: 1px solid var(--gray-line);
+    border-radius: 8px;
+    padding: 1.5rem 1.75rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  .persona-intro-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+    width: 52px; height: 52px;
+    background: var(--light-blue);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .persona-intro h3 { margin-bottom: 0.3rem; color: var(--dark-navy); }
+  .persona-intro p { font-size: 14px; margin: 0; }
+
+  .resource-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .resource-card {
+    background: var(--white);
+    border: 1px solid var(--gray-line);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.2s, border-color 0.2s;
+  }
+
+  .resource-card:hover {
+    box-shadow: 0 4px 16px rgba(1,45,97,0.1);
+    border-color: var(--mid-blue);
+  }
+
+  .resource-type {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--mid-blue);
+    margin-bottom: 0.6rem;
+  }
+
+  .resource-card h4 {
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
+    color: var(--black);
+    flex: 1;
+  }
+
+  .resource-card p {
+    font-size: 13px;
+    margin-bottom: 1rem;
+    flex: 1;
+  }
+
+  /* =====================
+     5. CONTACT
+  ===================== */
+  #contact {
+    background: var(--white);
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  .contact-card {
+    border: 1px solid var(--gray-line);
+    border-radius: 8px;
+    padding: 1.75rem 1.5rem;
+    text-align: left;
+    transition: box-shadow 0.2s, border-color 0.2s;
+    background: var(--white);
+  }
+
+  .contact-card:hover {
+    box-shadow: 0 4px 20px rgba(1,45,97,0.1);
+    border-color: var(--brand-blue);
+  }
+
+  .contact-icon {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+    margin: 0 0 1rem 0;
+  }
+
+  .contact-card h3 {
+    font-size: 1.05rem;
+    margin-bottom: 0.4rem;
+    color: var(--black);
+  }
+
+  .contact-card p {
+    font-size: 13px;
+    margin-bottom: 1.25rem;
+    min-height: 48px;
+  }
+
+  .contact-detail {
+    font-size: 12.5px;
+    color: var(--gray-text);
+    margin-bottom: 0.35rem;
+  }
+
+  .contact-detail a {
+    color: var(--brand-blue);
+  }
+
+  /* =====================
+     FOOTER
+  ===================== */
+  footer {
+    background: var(--brand-blue);
+    color: var(--white);
+    padding: 3rem 2rem;
+  }
+
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+  }
+
+  .footer-brand p {
+    color: rgba(255,255,255,0.6);
+    font-size: 13px;
+    margin-top: 1rem;
+    max-width: 280px;
+  }
+
+  .footer-col h4 {
+    color: var(--white);
+    font-family: 'Helvetica Neue', Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    opacity: 0.6;
+  }
+
+  .footer-col ul {
+    list-style: none;
+  }
+
+  .footer-col ul li {
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-col ul li a {
+    color: rgba(255,255,255,0.75);
+    font-size: 13.5px;
+    transition: color 0.15s;
+  }
+
+  .footer-col ul li a:hover {
+    color: var(--white);
+    text-decoration: none;
+  }
+
+  .footer-bottom {
+    max-width: 1200px;
+    margin: 2rem auto 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: rgba(255,255,255,0.45);
+  }
+
+  /* =====================
+     RESPONSIVE
+  ===================== */
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-stats { display: none; }
+    .summary-grid { grid-template-columns: 1fr 1fr; }
+    .forms-type-grid { grid-template-columns: 1fr; }
+    .aem-explainer { grid-template-columns: 1fr; }
+    .bp-two-col { grid-template-columns: 1fr; }
+    .resource-grid { grid-template-columns: 1fr 1fr; }
+    .contact-grid { grid-template-columns: 1fr 1fr; }
+    .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    h1 { font-size: 2.2rem; }
+    .nav-links { display: none; }
+  }
+
+  @media (max-width: 600px) {
+    .summary-grid { grid-template-columns: 1fr; }
+    .resource-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .persona-tabs { flex-direction: column; }
+    .persona-tab { border-right: none; border-bottom: 1px solid var(--gray-line); }
+  }
+
+  /* =====================
+     MISC
+  ===================== */
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+  }
+
+  .tag-pill {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    background: var(--light-blue);
+    color: var(--brand-blue);
+    border: 1px solid rgba(1,45,97,0.15);
+  }
+
+  .built-by-bar {
+    background: var(--dark-navy);
+    padding: 0.75rem 2rem;
+    text-align: center;
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.5px;
+  }
+
+  .built-by-bar strong { color: rgba(255,255,255,0.7); }
+
+  /* Inline SVG color overrides for lockup */
+  .merkle-logo-svg path.st0 { fill: var(--white); }
+  .merkle-logo-dark path.st0 { fill: var(--black); }
+
+  .divider-rule {
+    border: none;
+    border-top: 1px solid var(--gray-line);
+    margin: 3rem 0;
+  }
+
+</style>
+</head>
+<body>
+
+<!-- BUILT BY BAR -->
+<div class="built-by-bar">
+  Built by <strong>Merkle</strong>, a dentsu company
+</div>
+
+<!-- ===================== NAV ===================== -->
+<nav id="top-nav">
+  <div class="nav-inner">
+
+    <!-- LOGO LOCKUP -->
+    <div class="logo-lockup">
+      <!-- Mayo Clinic Logo -->
+      <svg width="36" height="36" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
+        <path d="m42.708,9.4301c.6221.0233,1.2424-.0821,1.8218-.3096.5795-.2275,1.1059-.5721,1.5462-1.0123.4403-.4402.7849-.9666,1.0123-1.5461.2275-.5795.3328-1.1998.3096-1.8219.03-.626-.0705-1.2514-.2949-1.8366-.2244-.5852-.568-1.1173-1.009-1.5627-.441-.4454-.9696-.7943-1.5526-1.0246-.5828-.2303-1.2073-.337-1.8335-.3133-.6302-.0305-1.2598.0712-1.8483.2985-.5886.2273-1.123.5752-1.5693,1.0213-.4461.4461-.794.9806-1.0213,1.5692-.2272.5885-.329,1.2181-.2984,1.8483-.0237.6263.0829,1.2507.3133,1.8336.2303.5829.5792,1.1116,1.0246,1.5525.4454.4409.9776.7845,1.5627,1.009.5851.2244,1.2105.3249,1.8366.2949Zm0-7.6223c1.5727,0,2.5961,1.1512,2.5961,2.9182s-1.0328,2.9182-2.5961,2.9182-2.6055-1.1512-2.6055-2.904,1.0232-2.9324,2.6055-2.9324Zm-18.8023,5.7463h3.8704l.72,1.6817h2.1887L26.5586.2019h-1.3785l-4.1499,9.034h2.1602l.7153-1.6817Zm3.2167-1.5586l-1.2626-2.9694-1.2624,2.9694h2.525Zm-12.3786,1.8949l-2.2881-3.553v4.8984h-2.075V.1971h1.4591l3.4345,5.3626L18.7136.1971h1.4591v9.0387h-2.075v-4.8984l-2.2881,3.553h-1.0659Zm17.798,1.3454h2.1033v-3.2119L38.1271.1971h-2.2881l-2.2313,3.9462L31.3765.1971h-2.3165l3.4819,5.8269v3.2119Zm-16.6137,12.7243v-9.0387h2.1081v7.2954h4.6v1.7433h-6.708Zm10.3747-9.0387h-2.1033v9.034h2.1033v-9.034Zm-13.397,5.9927l1.8523.7296c-.7059,1.587-2.3023,2.5107-4.2541,2.5249-3.065,0-5.1542-2.3686-4.6804-5.5852.1853-.9447.651-1.8115,1.3364-2.4876.6853-.676,1.5585-1.1298,2.5056-1.3022,2.3118-.3126,4.2731.668,5.0499,2.5012l-1.8523.7296c-.1918-.4639-.5224-.8573-.9464-1.1261-.424-.2689-.9207-.4-1.4222-.3756-1.5917,0-2.6244,1.1654-2.6244,2.9324s1.0232,2.9181,2.6244,2.9181c.5009.0209.9968-.1064,1.4257-.3658.4289-.2596.7717-.6399.9856-1.0932Zm27.822-5.9927h-2.1033v9.034h2.1033v-9.034Zm7.5591,7.0599c.4256-.2523.7686-.6232.987-1.0672l1.8523.7437c-.7153,1.587-2.3118,2.5108-4.2635,2.5108-3.065,0-5.1542-2.3686-4.6805-5.5852.1854-.9447.6511-1.8115,1.3364-2.4876.6854-.676,1.5585-1.1298,2.5055-1.3022,2.326-.3128,4.2873.668,5.0452,2.4775l-1.8523.7296c-.1919-.4639-.5224-.8573-.9464-1.1261-.424-.2689-.9208-.4-1.4223-.3756-1.5727,0-2.5961,1.1512-2.5961,2.9181s1.0233,2.9181,2.6245,2.9181c.4944.0215.9843-.1016,1.41-.3539Zm-18.559-7.0599h-1.4023v9.0387h2.075v-5.5142l4.7989,5.5142h1.4023v-9.0387h-2.075v5.5142l-4.7989-5.5142Zm1.5491,21.1141v-5.7843h15.6378v8.8256c0,5.3105-2.5677,8.7166-7.8307,10.3794-.635-.1976-1.2567-.435-1.8618-.7107v.1705c-.7769,4.5289-3.6003,7.5276-8.565,9.0814-4.96-1.5539-7.788-4.5525-8.565-9.0814,0,0-.0237-.0616-.0237-.1705-.6051.2757-1.227.5131-1.8618.7107-5.2632-1.6628-7.8307-5.0737-7.8307-10.3794v-8.8302h15.6614v5.7889h5.2395Zm-13.0855,11.5575c-4.2523-1.7053-5.9632-4.2298-5.9632-8.862v-5.718c0-.24.0954-.4701.265-.6397.1697-.1697.3999-.265.6399-.265h10.152c.24,0,.4701.0953.6399.265.1696.1696.265.3998.265.6397v3.0224h-4.3157v10.7679c-.5438.2984-1.1059.5622-1.6829.7896Zm5.9938-8.8573v-.8432h-1.5444c-.24,0-.4701.0953-.6397.265-.1697.1696-.265.3998-.265.6397v6.7081c1.7148-1.587,2.4492-3.7235,2.4492-6.7696Zm4.472,17.4096c4.2304-1.6817,6.3243-4.0978,6.798-8.1339,0,0,.0094-.0901.0285-.251-2.8188-1.9092-4.2067-4.78-4.2067-8.6787v-1.1844h-5.2347v1.1844c0,3.8987-1.3644,6.7838-4.2067,8.6787.0283.161.0283.251.0283.251.4737,4.0362,2.5629,6.4522,6.7933,8.1339Zm4.4957-17.4096c0,3.0461.7342,5.1827,2.4492,6.7696v-6.7081c0-.1188-.0234-.2365-.0688-.3462-.0455-.1098-.1122-.2095-.1962-.2935-.084-.0841-.1837-.1507-.2935-.1962-.1098-.0455-.2275-.0688-.3462-.0688h-1.5444v.8432Zm5.9452,8.8683c4.2731-1.7055,5.9785-4.2304,5.9785-8.8683v-5.7131c0-.2384-.094-.4671-.2617-.6365-.1676-.1695-.3953-.2659-.6337-.2684h-10.1425c-.24,0-.4701.0953-.6399.265-.1696.1697-.2649.3998-.2649.6399v3.0223h4.2778v10.7679c.5449.299,1.1081.5632,1.6864.7912Z" fill-rule="evenodd" fill="#012D61"/>
+      </svg>
+      <span style="font-family:Georgia,serif;font-size:14px;font-weight:normal;color:var(--black);margin-left:0.6rem;letter-spacing:0.2px;">Mayo Clinic</span>
+
+      <div class="logo-divider"></div>
+
+      <!-- Merkle wordmark inline SVG in dark -->
+      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 639 81" height="18" style="flex-shrink:0;">
+        <g>
+          <path fill="#080808" d="M145.7,81h-17V32.9l-25.5,25.8L77.8,32.9V81h-17V0h9l33.6,34.1L136.7,0h9V81z"/>
+          <path fill="#F23A1D" d="M43.8,36.4H0l43.8,44.4V36.4z"/>
+          <path fill="#080808" d="M245.6,80.8H168V0h74.3v16.6h-57.2V30h37.6v16.2h-37.6v18.4h60.5V80.8z"/>
+          <path fill="#080808" d="M350.4,80.8h-19l-20.9-32.9h-27.7v32.9H266V0.4h53.2c7.9,0,14,2,18.8,5.7c5.2,4.2,7.9,10.2,7.9,17.9
+            c0,5.3-1.5,9.9-4.4,14.1c-3.1,4.2-7,7.1-12,8.8L350.4,80.8z M328.6,24c0-2.2-0.7-4-2.2-5.3c-1.5-1.1-4.1-1.8-7.4-1.8h-36.2v14.8
+            H319c3.5,0,5.9-0.7,7.4-2C327.9,27.8,328.6,26,328.6,24z"/>
+          <path fill="#080808" d="M451.8,80.8h-19.9l-29.5-40.2l-12,10.4v29.8h-17V0.4h17v30l35.2-30h23.6L414.6,30L451.8,80.8z"/>
+          <path fill="#080808" d="M543.1,80.8h-71.6V0h17v64.6h54.5V80.8z"/>
+          <path fill="#080808" d="M639,80.8h-77.6V0h74.3v16.6h-57.5V30h37.6v16.2h-37.6v18.4H639V80.8z"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- NAV LINKS -->
+    <ul class="nav-links">
+      <li><a href="#summary">Summary</a></li>
+      <li><a href="#what-are-aem-forms">AEM Forms</a></li>
+      <li><a href="#best-practices">Best Practices</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+  </div>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<section id="hero">
+  <div class="hero-inner">
+    <div>
+      <span class="hero-label">AEM Forms Enablement</span>
+      <h1>Using Adobe Forms at <em>Mayo Clinic</em></h1>
+      <p>This is a curated resource hub for education, enablement, and change management built by your Merkle team to help your teams understand, adopt, and maximize AEM Forms across every role.</p>
+      <div class="hero-cta-row">
+        <a href="#education" class="btn-primary">Explore by Role</a>
+        <a href="#what-are-aem-forms" class="btn-outline-white">What are AEM Forms?</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-card">
+        <div class="stat-num">4</div>
+        <div class="stat-label">Form delivery architectures available in AEM</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">100</div>
+        <div class="stat-label">Lighthouse performance score target for Edge Delivery forms</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">30+</div>
+        <div class="stat-label">Out-of-box Core Components for Adaptive Forms</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">0</div>
+        <div class="stat-label">Build tools required for Edge Delivery development</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 1. SUMMARY ===================== -->
+<section id="summary">
+  <div class="section-wrap">
+
+    <div class="section-header">
+      <span class="section-eyebrow">01 — Summary</span>
+      <h2>Why AEM Forms Matters for Mayo Clinic</h2>
+      <p>AEM Forms is Adobe's enterprise platform for building, publishing, and automating digital forms and communications. For Mayo Clinic, it is the infrastructure that powers patient enrollment, staff intake, data capture, and multi-channel communications — at scale, on brand, and with full governance.</p>
+    </div>
+
+    <!-- WHAT IS AN AEM FORM -->
+    <div style="background:var(--light-blue);border-radius:10px;padding:2rem 2.5rem;margin-bottom:3rem;display:flex;gap:2rem;align-items:flex-start;">
+      <div style="flex-shrink:0;width:48px;height:48px;background:var(--brand-blue);border-radius:8px;display:flex;align-items:center;justify-content:center;">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="3" y="3" width="18" height="18" rx="2" stroke="white" stroke-width="1.5" fill="none"/>
+          <line x1="7" y1="8" x2="17" y2="8" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="7" y1="12" x2="17" y2="12" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="7" y1="16" x2="13" y2="16" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div>
+        <h3 style="font-size:1.15rem;margin-bottom:0.5rem;color:var(--dark-navy);">What is an AEM Form?</h3>
+        <p style="font-size:14.5px;max-width:760px;margin:0;">An AEM Form is a digital data-capture experience built inside Adobe Experience Manager. It can be a simple contact form or a complex multi-step enrollment flow — rendered on any device, prefilled from backend systems, validated in real time, and connected to downstream workflows for processing and storage. Unlike a standalone form tool, AEM Forms is integrated directly into your content, data, and workflow infrastructure, meaning every form submission becomes a structured event your organization can act on immediately.</p>
+      </div>
+    </div>
+
+    <div class="summary-grid">
+      <div class="summary-card">
+        <div class="summary-card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z" fill="#012D61"/>
+          </svg>
+        </div>
+        <h3>Patient &amp; Staff Enrollment</h3>
+        <p>Guided, device-adaptive enrollment flows with prefill from existing records, Adobe Sign integration for consent, and Document of Record for compliant archives.</p>
+        <div class="tag-row">
+          <span class="tag-pill">Compliance</span>
+          <span class="tag-pill">e-Signature</span>
+          <span class="tag-pill">Prefill</span>
+        </div>
+      </div>
+      <div class="summary-card">
+        <div class="summary-card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="12" width="4" height="9" rx="1" fill="#012D61"/>
+            <rect x="10" y="7" width="4" height="14" rx="1" fill="#012D61"/>
+            <rect x="17" y="3" width="4" height="18" rx="1" fill="#012D61"/>
+          </svg>
+        </div>
+        <h3>Data Capture &amp; Analytics</h3>
+        <p>Field-level abandonment tracking via Adobe Analytics. Agentic optimization recommends placement, navigation, and accessibility improvements to lift completion rates.</p>
+        <div class="tag-row">
+          <span class="tag-pill">Analytics</span>
+          <span class="tag-pill">Optimization</span>
+          <span class="tag-pill">AI</span>
+        </div>
+      </div>
+      <div class="summary-card">
+        <div class="summary-card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="6" cy="12" r="2.5" stroke="#012D61" stroke-width="1.5" fill="none"/>
+            <circle cx="18" cy="6" r="2.5" stroke="#012D61" stroke-width="1.5" fill="none"/>
+            <circle cx="18" cy="18" r="2.5" stroke="#012D61" stroke-width="1.5" fill="none"/>
+            <line x1="8.4" y1="10.9" x2="15.7" y2="7.1" stroke="#012D61" stroke-width="1.5"/>
+            <line x1="8.4" y1="13.1" x2="15.7" y2="16.9" stroke="#012D61" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <h3>Enterprise Integration</h3>
+        <p>Form Data Model connects forms directly to CRM, ERP, and internal databases. Submit actions route to SharePoint, Salesforce, Dynamics, and custom REST/SOAP APIs.</p>
+        <div class="tag-row">
+          <span class="tag-pill">FDM</span>
+          <span class="tag-pill">CRM</span>
+          <span class="tag-pill">Workflow</span>
+        </div>
+      </div>
+      <div class="summary-card">
+        <div class="summary-card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="13,2 3,14 12,14 11,22 21,10 12,10" fill="#012D61"/>
+          </svg>
+        </div>
+        <h3>Speed at the Edge</h3>
+        <p>Edge Delivery Services delivers forms at near-perfect Lighthouse scores. Authors publish changes in minutes from Excel, Google Sheets, or the Universal Editor — no pipeline wait.</p>
+        <div class="tag-row">
+          <span class="tag-pill">Edge Delivery</span>
+          <span class="tag-pill">Performance</span>
+          <span class="tag-pill">Low-Code</span>
+        </div>
+      </div>
+      <div class="summary-card">
+        <div class="summary-card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="9" stroke="#012D61" stroke-width="1.5" fill="none"/>
+            <path d="M9 9c0-1.66 1.34-3 3-3s3 1.34 3 3c0 1.3-.84 2.4-2 2.82V15h-2v-3.18C9.84 11.4 9 10.3 9 9z" fill="#012D61"/>
+            <rect x="11" y="17" width="2" height="2" rx="1" fill="#012D61"/>
+          </svg>
+        </div>
+        <h3>GenAI-Powered Authoring</h3>
+        <p>Create forms from natural-language prompts. Brand Experience Agent enforces Mayo Clinic brand and governance standards automatically on every form generated.</p>
+        <div class="tag-row">
+          <span class="tag-pill">GenAI</span>
+          <span class="tag-pill">Brand Governance</span>
+          <span class="tag-pill">Automation</span>
+        </div>
+      </div>
+      <div class="summary-card">
+        <div class="summary-card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="5" y="2" width="14" height="20" rx="2" stroke="#012D61" stroke-width="1.5" fill="none"/>
+            <line x1="8" y1="7" x2="16" y2="7" stroke="#012D61" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="8" y1="11" x2="16" y2="11" stroke="#012D61" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="8" y1="15" x2="12" y2="15" stroke="#012D61" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Omnichannel Delivery</h3>
+        <p>One form definition renders across web, mobile app, chat interface, and scanned document. Headless Adaptive Forms serve any frontend framework with AEM handling all logic.</p>
+        <div class="tag-row">
+          <span class="tag-pill">Headless</span>
+          <span class="tag-pill">Multi-channel</span>
+          <span class="tag-pill">Offline</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 2. WHAT ARE AEM FORMS ===================== -->
+<section id="what-are-aem-forms">
+  <div class="section-wrap">
+    <div class="section-header">
+      <span class="section-eyebrow">02 — What are AEM Forms</span>
+      <h2>Understanding the Platform</h2>
+      <p>AEM Forms is not a single form builder. It is a suite of four distinct delivery architectures, each suited to different complexity, team skill, and performance requirements.</p>
+    </div>
+
+    <div class="aem-explainer">
+      <div class="explainer-stat-block">
+        <div class="big-num">4</div>
+        <p>Distinct implementation architectures, each with different authoring methods and use cases.</p>
+        <hr class="divider-line">
+        <div class="mini-stat">
+          <div class="label">Adobe's Default (2025)</div>
+          <div class="val">Edge Delivery + Universal Editor</div>
+        </div>
+        <div class="mini-stat">
+          <div class="label">For Non-Technical Teams</div>
+          <div class="val">Document-Based (Excel / Sheets)</div>
+        </div>
+        <div class="mini-stat">
+          <div class="label">For Complex Enterprise</div>
+          <div class="val">Adaptive Forms Core Components</div>
+        </div>
+        <div class="mini-stat">
+          <div class="label">For Multi-Channel / App</div>
+          <div class="val">Headless Adaptive Forms</div>
+        </div>
+        <hr class="divider-line">
+        <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/forms/forms-overview/latest-innovations" target="_blank" class="btn-outline-white" style="font-size:13px;">View Adobe Docs</a>
+      </div>
+
+      <div class="forms-type-grid">
+        <div class="form-type-card">
+          <span class="badge badge-rec">Recommended — New Projects</span>
+          <h4>Edge Delivery + Universal Editor</h4>
+          <p style="font-size:13.5px;">WYSIWYG drag-and-drop authoring. Plain HTML/CSS/JS output. Near-perfect Lighthouse scores. Supports full AEM backend: FDM, Workflows, Adobe Sign, Workfront Fusion. Adobe's default for all new builds in 2025.</p>
+        </div>
+        <div class="form-type-card">
+          <span class="badge badge-curr">For Content Teams</span>
+          <h4>Edge Delivery + Document-Based</h4>
+          <p style="font-size:13.5px;">Authors work in Microsoft Excel or Google Sheets. No AEM training needed. Data routes directly to spreadsheets. Best for contact forms, surveys, lead-gen, and simple intake — not complex multi-step flows.</p>
+        </div>
+        <div class="form-type-card">
+          <span class="badge badge-curr">Complex Enterprise Forms</span>
+          <h4>Adaptive Forms (Core Components)</h4>
+          <p style="font-size:13.5px;">30 open-source BEM-compliant components. Same WYSIWYG as AEM Sites. Advanced rules editor, conditional logic, multi-panel navigation. Supports Headless API. Preferred over Foundation Components for all new AEM builds.</p>
+        </div>
+        <div class="form-type-card">
+          <span class="badge badge-curr">Multi-Channel / Omnichannel</span>
+          <h4>Headless Adaptive Forms</h4>
+          <p style="font-size:13.5px;">AEM provides form logic, state, validation, and submission. Your app provides the UI — React, Angular, native mobile, or chatbot. One form definition renders anywhere. Full design system control.</p>
+        </div>
+        <div class="form-type-card">
+          <span class="badge badge-leg">Legacy — Existing Builds Only</span>
+          <h4>Adaptive Forms (Foundation Components)</h4>
+          <p style="font-size:13.5px;">Maintenance mode only. No new features being added. If you have existing forms here, maintain them but plan migration to Core Components. Do not start new builds on Foundation Components.</p>
+        </div>
+        <div class="form-type-card">
+          <span class="badge badge-leg">Regulated / Compliance</span>
+          <h4>PDF Forms / HTML5 Forms</h4>
+          <p style="font-size:13.5px;">XDP template-based forms. Offline fill, barcode scan, data import/export from existing PDFs. Still supported for compliance-heavy use cases requiring PDF output and tamper-proof document trails.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Architecture layers -->
+    <h3 style="margin-bottom:1.25rem;font-size:1.2rem;">How AEM Forms Processes a Submission</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--gray-line);border:1px solid var(--gray-line);border-radius:8px;overflow:hidden;">
+      <div style="background:var(--white);padding:1.5rem;">
+        <div style="width:40px;height:40px;background:var(--light-blue);border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="3" width="18" height="18" rx="2" stroke="#012D61" stroke-width="1.5" fill="none"/>
+            <path d="M8 8h8M8 12h5M8 16h3" stroke="#012D61" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="18" cy="16" r="3" fill="#012D61"/>
+            <path d="M16.5 16l1 1 2-2" stroke="white" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mid-blue);margin-bottom:0.5rem;font-weight:500;">Layer 1</div>
+        <h4 style="margin-bottom:0.5rem;">Author</h4>
+        <p style="font-size:13.5px;">Where forms are designed, templated, and managed. Business users use drag-and-drop or document-based authoring. Developers extend with custom components and FDM connections.</p>
+      </div>
+      <div style="background:var(--white);padding:1.5rem;border-left:1px solid var(--gray-line);border-right:1px solid var(--gray-line);">
+        <div style="width:40px;height:40px;background:var(--light-blue);border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="9" stroke="#012D61" stroke-width="1.5" fill="none"/>
+            <path d="M2 12h4M18 12h4M12 2v4M12 18v4" stroke="#012D61" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="12" cy="12" r="3" fill="#012D61"/>
+          </svg>
+        </div>
+        <div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mid-blue);margin-bottom:0.5rem;font-weight:500;">Layer 2</div>
+        <h4 style="margin-bottom:0.5rem;">Publish / Edge</h4>
+        <p style="font-size:13.5px;">Customer-facing delivery. Traditional AEM Publish/Dispatcher for Adaptive Forms, or Edge Delivery CDN for EDS forms. This is where end users fill out and submit the form.</p>
+      </div>
+      <div style="background:var(--white);padding:1.5rem;">
+        <div style="width:40px;height:40px;background:var(--light-blue);border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="6" width="20" height="14" rx="2" stroke="#012D61" stroke-width="1.5" fill="none"/>
+            <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke="#012D61" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M12 11v4M10 13h4" stroke="#012D61" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mid-blue);margin-bottom:0.5rem;font-weight:500;">Layer 3</div>
+        <h4 style="margin-bottom:0.5rem;">Processing</h4>
+        <p style="font-size:13.5px;">Behind the firewall. Submitted data runs through AEM Workflows, connects to external systems (CRM, ERP, databases), triggers notifications, and stores compliant records.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 3. BEST PRACTICES ===================== -->
+<section id="best-practices">
+  <div class="section-wrap">
+    <div class="section-header">
+      <span class="section-eyebrow">03 — Best Practices</span>
+      <h2>What to Do and What to Avoid</h2>
+      <p>Sourced from Adobe's official Experience League documentation and Merkle implementation experience. Applies across form types unless noted.</p>
+    </div>
+
+    <div class="bp-two-col">
+      <div class="bp-block">
+        <div class="bp-block-header do">
+          <span>✓</span> Do This
+        </div>
+        <ul class="bp-list">
+          <li><span class="icon">✓</span>Use Core Components for all new Adaptive Forms builds</li>
+          <li><span class="icon">✓</span>Start all new projects with Edge Delivery + Universal Editor</li>
+          <li><span class="icon">✓</span>Define your Form Data Model before building form fields</li>
+          <li><span class="icon">✓</span>Upload packages via Forms Manager UI, not CRX Package Manager</li>
+          <li><span class="icon">✓</span>Create overlays in <code style="font-size:12px;background:#f0f0f0;padding:1px 5px;border-radius:3px;">/app</code> folders — never modify <code style="font-size:12px;background:#f0f0f0;padding:1px 5px;border-radius:3px;">/libs</code></li>
+          <li><span class="icon">✓</span>Enable Document of Record for all compliance-sensitive submissions</li>
+          <li><span class="icon">✓</span>Add CAPTCHA (reCAPTCHA) on all public-facing forms</li>
+          <li><span class="icon">✓</span>Use fragment-based authoring to reuse common field groups</li>
+          <li><span class="icon">✓</span>Connect Adobe Analytics to track field-level abandonment</li>
+          <li><span class="icon">✓</span>Test mobile rendering before every publish</li>
+          <li><span class="icon">✓</span>Plan templates and custom component requirements before building</li>
+          <li><span class="icon">✓</span>Target Lighthouse score 100 on all Edge Delivery forms</li>
+        </ul>
+      </div>
+      <div class="bp-block">
+        <div class="bp-block-header dont">
+          <span>✕</span> Avoid This
+        </div>
+        <ul class="bp-list">
+          <li><span class="icon">✕</span>Build new forms on Foundation Components</li>
+          <li><span class="icon">✕</span>Modify anything in <code style="font-size:12px;background:#f0f0f0;padding:1px 5px;border-radius:3px;">/libs</code> directly</li>
+          <li><span class="icon">✕</span>Use CRX Package Manager for form package uploads</li>
+          <li><span class="icon">✕</span>Use document-based authoring for complex multi-panel, multi-step forms</li>
+          <li><span class="icon">✕</span>Skip server-side validation — client + server both required</li>
+          <li><span class="icon">✕</span>Assume offline sync works without testing Forms Workspace explicitly</li>
+          <li><span class="icon">✕</span>Stack sequential storage API calls — batch related data</li>
+          <li><span class="icon">✕</span>Deploy to production without Lighthouse performance verification</li>
+          <li><span class="icon">✕</span>Use Foundation Components for new headless API integrations</li>
+          <li><span class="icon">✕</span>Ignore field-level analytics — abandonment data is actionable</li>
+          <li><span class="icon">✕</span>Launch forms without testing Adobe Sign integration end-to-end</li>
+          <li><span class="icon">✕</span>Mix build tools (Vite, Webpack) into Edge Delivery projects</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bp-table-wrap">
+      <table class="bp-table">
+        <thead>
+          <tr>
+            <th>Scenario</th>
+            <th>Recommended Approach</th>
+            <th>Why</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>New form, any complexity</td>
+            <td>Edge Delivery + Universal Editor</td>
+            <td>Adobe's 2025 default. Fast delivery, Lighthouse 100, no build pipeline overhead.</td>
+          </tr>
+          <tr>
+            <td>Non-technical content team needs a form fast</td>
+            <td>Edge Delivery + Document-Based (Excel/Sheets)</td>
+            <td>No AEM training required. Data routes directly to spreadsheets. Live in minutes.</td>
+          </tr>
+          <tr>
+            <td>Complex form with AEM Workflow, FDM, Adobe Sign</td>
+            <td>Adaptive Forms Core Components or EDS + Universal Editor</td>
+            <td>Full backend capabilities, advanced rules editor, multi-panel flows.</td>
+          </tr>
+          <tr>
+            <td>Form embedded in React app or native mobile</td>
+            <td>Headless Adaptive Forms</td>
+            <td>One form definition, any UI. React hooks provided. AEM manages all logic.</td>
+          </tr>
+          <tr>
+            <td>Regulated submission requiring PDF archive</td>
+            <td>Enable Document of Record on Adaptive Forms</td>
+            <td>Auto-generates tamper-proof PDF of every submission. Compliance-ready.</td>
+          </tr>
+          <tr>
+            <td>Existing Foundation Component forms</td>
+            <td>Maintain; plan migration to Core Components</td>
+            <td>Foundation is not deprecated but receives no new features.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 4. EDUCATION BY PERSONA ===================== -->
+<section id="education">
+  <div class="section-wrap">
+    <div class="section-header">
+      <span class="section-eyebrow">04 — Education by Persona</span>
+      <h2>Resources Tailored to Your Role</h2>
+      <p>Select your role below to see curated tutorials, documentation, videos, and tools relevant to how you work with AEM Forms.</p>
+    </div>
+
+    <div class="persona-tabs" role="tablist">
+      <div class="persona-tab active" onclick="switchTab('developers')" role="tab">
+        <span class="tab-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="3" width="20" height="15" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/>
+            <path d="M8 21h8M12 18v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M7 10l-2 2 2 2M17 10l2 2-2 2M10 15l4-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        Developers
+      </div>
+      <div class="persona-tab" onclick="switchTab('marketers')" role="tab">
+        <span class="tab-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 11V13H5L10 18V6L5 11H3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
+            <path d="M14 9.27A4 4 0 0 1 14 14.73" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M16.5 7A7 7 0 0 1 16.5 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </span>
+        Marketers
+      </div>
+      <div class="persona-tab" onclick="switchTab('sales')" role="tab">
+        <span class="tab-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="1.5" fill="none"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </span>
+        Sales
+      </div>
+      <div class="persona-tab" onclick="switchTab('admins')" role="tab">
+        <span class="tab-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5" fill="none"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          </svg>
+        </span>
+        Admins
+      </div>
+    </div>
+
+    <!-- DEVELOPERS -->
+    <div id="tab-developers" class="persona-panel active">
+      <div class="persona-intro">
+        <div class="persona-intro-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="3" width="20" height="15" rx="2" stroke="#012D61" stroke-width="1.5" fill="none"/>
+            <path d="M8 21h8M12 18v3" stroke="#012D61" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M7 10l-2 2 2 2M17 10l2 2-2 2M10 15l4-6" stroke="#012D61" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div>
+          <h3>Developers</h3>
+          <p>Build custom components, configure Form Data Models, implement Headless Adaptive Forms, set up Edge Delivery projects, and extend AEM Forms via APIs and server-side logic.</p>
+        </div>
+      </div>
+      <div class="resource-grid">
+        <div class="resource-card">
+          <span class="resource-type">Tutorial</span>
+          <h4>Getting Started: Edge Delivery + Universal Editor</h4>
+          <p>Full setup walkthrough — GitHub repo, AEM Code Sync, fstab.yaml, form creation, and publishing.</p>
+          <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/edge-delivery/build-forms/universal-editor/getting-started-universal-editor" target="_blank" class="btn-outline" style="font-size:13px;">View Tutorial</a>
+        </div>
+        <div class="resource-card">
+          <span class="resource-type">Tutorial</span>
+          <h4>Getting Started: Edge Delivery Document-Based Forms</h4>
+          <p>10-20 min setup. GitHub boilerplate, SharePoint/Drive content folder, Adaptive Forms Block, publish.</p>
+          <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/edge-delivery/build-forms/getting-started-edge-delivery-services-forms/tutorial" target="_blank" class="btn-outline" style="font-size:13px;">View Tutorial</a>
+        </div>
+        <div class="resource-card">
+          <span class="resource-type">Docs</span>
+          <h4>Headless Adaptive Forms Overview</h4>
+          <p>JSON model, Forms Web SDK, React bindings, multi-channel deployment, and custom component mapping.</p>
+          <a href="https://experienceleague.adobe.com/en/docs/experience-manager-headless-adaptive-forms/using/overview" target="_blank" class="btn-outline" style="font-size:13px;">View Docs</a>
+        </div>
+        <div class="resource-card">
+          <span class="resource-type">Docs</span>
+          <h4>Headless Forms — Concepts & FAQ</h4>
+          <p>Validation, custom UI frameworks, React Spectrum/Material UI integration, mobile best practices.</p>
+          <a href="https://experienceleague.adobe.com/en/docs/experience-manager-headless-adaptive-forms/using/understanding-headless-forms" target="_blank" class="btn-outline" style="font-size:13px;">View Docs</a>
+        </div>
+        <div class="resource-card">
+          <span class="resource-type">Docs</span>
+          <h4>Core Components Introduction</h4>
+          <p>All 30 Core Components, versioning policy, BEM compliance, accessibility specs, and GitHub repo.</p>
+          <a href="https://experienceleague.adobe.com/en/docs/experience-manager-core-components/using/adaptive-forms/introduction" target="_blank" class="btn-outline" style="font-size:13px;">View Docs</a>
+        </div>
+        <div class="resource-card">
+          <span class="resource-type">Docs</span>
+          <h4>Forms Service (PDF / XDP)</h4>
+          <p>Interactive PDF data capture, XDP templates, form data integration, import/export from existing PDFs.</p>
+          <a href="https://experienceleague.adobe.com/en/docs/experience-manager-65/content/forms/use-document-services/forms-service" target="_blank" class="btn-outline" style="font-size:13px;">View Docs</a>
+        </div>
+        <div class="resource-card">
+          <span class="resource-type">Video / Gems</span>
+          <h4>AEM Gems: Edge Delivery for AEM Forms</h4>
+          <p>Session recording: document-based and AEM-based authoring, Forms Block customization, server-side extensions.</p>
+          <a href="https://experienceleague.adobe.com/en/docs/events/experience-manager-gems-recordings/gems2024/edge-delivery-for-aem-forms" target="_blank" class="btn-outline" style="font-size:13px;">Watch Recording</a>
+        </div>
+        <div class="resource-card">
+          <span class="resource-type">Tutorial</span>
+          <h4>AEM Forms Basics with MySQL — Oshyn</h4>
+          <p>Hands-on: templates, data models with MySQL, adaptive form creation, field binding. February 2025.</p>
+          <a href="https://www.oshyn.com/blog/aem-forms-basics" target="_blank" class="btn-outline" style="font-size:13px;">View Tutorial</a>
+        </div>
+        <div class="resource-card">
+          <span class="resource-type">Community</span>
+          <h4>Core vs Foundation vs EDS Components</h4>
+          <p>Definitive comparison thread with when-to-use guidance for each component type.</p>
+          <a href="https://experienceleaguecommunities.adobe.com/t5/adobe-experience-manager-forms/what-is-the-difference-between-core-components-foundation/td-p/774912" target="_blank" class="btn-outline" style="font-size:13px;">View Thread</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- MARKETERS -->
+    <div id="tab-marketers" class="persona-panel">
+      <div class="persona-intro">
+        <div class="persona-intro-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 11V13H5L10 18V6L5 11H3Z" stroke="#012D61" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
+            <path d="M14 9.27A4 4 0 0 1 14 14.73" stroke="#012D61" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M16.5 7A7 7 0 0 1 16.5 17" stroke="#012D61" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <h3>Marketers</h3>
+          <p>Design and publish on-brand forms, leverage GenAI authoring, track form performance with analytics, build personalized communications, and optimize conversion rates without writing code.</p>
+        </div>
+      </div>
+      <div class="resource-grid">
+        <div class="resource-card">
+          <span class="resource-type">Product Overview</span>
+          <h4>AEM Forms Product Page</h4>
+          <p>Top-level product overview with interactive demo, AI agent announcements, and use case walkthrough.</p>
+          <a href="https://business.adobe.com/products/experience-manager/forms.html" target="_blank" class="btn-outline" style="font-size:13px;">View Overview</a>
+        </div>
+        <div class="resource-card">
+          <span class="resource-type">Innovation Brief</span>
+          <h4>2025 GenAI Innovations in AEM Forms</h4>
+          <p>Experience Generation, Brand Experience Agent, multi-modal form filling, and agentic optimization briefing.</p>
+          <a href="https://solutionpartners.adobe.com/solution-partners/news/2025/07/adobe-experience-manager-forms-top-innovations.html" target="_blank" class="btn-outline" style="font-size:13px;">Read Brief</a>
+        </div>
+        <div class="resource-card">
+          <span class="resource-type">Docs</span>
+          <h4>Latest Innovations — AEM Forms Cloud Service</h4>
+          <p>Official Adobe doc covering Edge Delivery, GenAI authoring, Interactive Communications Editor, Universal Editor.</p>
+          <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/forms/forms-overview/latest-innovations" target="_blank" class="btn-outline" style="font-size:13px;">View Docs</a>
+        </div>
+        <div class="resource-card">
+          <span class="resource-type">Docs</span>
+          <h4>Authoring Adaptive Forms</h4>
+          <p>How to author forms using the WYSIWYG editor — components, assets browser, rules, previews, and form properties.</p>
+          <a href="https://experienceleague.adobe.com/en/docs/experience-manager-65/content/forms/getting-started/introduction-forms-authoring" target="_blank" class="btn-outline" style="font-size:13px;">View Docs</a>
+        </div>
+        <div class="resource-card">
+          <span class="resource-type">Video Hub</span>
+          <h4>AEM Forms Tutorials & Videos</h4>
+          <p>The full official video library. Every feature, every capability, including analytics, authoring, and communications.</p>
+          <a href="https://experienceleague.adobe.com/en/docs/experience-manager-learn/forms/overview" target="_blank" class="btn-outline" style="font-size:13px;">Browse Videos</a>
+        </div>
+        <div class="resource-card">
+          <span class="resource-type">Guide</span>
+          <h4>AEM Forms Benefits</h4>
+          <p>Business case for AEM Forms: conversion lift, multi-channel delivery, enrollment personalization, and brand centralization.</p>
+          <a href="https://business.adobe.com/products/experience-manager/forms/benefits.html" target="_blank" class="btn-outline" style="font-size:13px;">Read Guide</a>
+        </div>
+        <div class="resource-card">
+          <span class="resource-type">Deep Dive</span>
+          <h4>What Is AEM Forms: In-Depth Overview</h4>
+          <p>Strong practitioner overview covering architecture, workflow, and business use cases. Good for stakeholder briefings.</p>
+          <a href="https://axamit.com/blog/adobe-experience-manager/what-is-aem-forms/" target="_blank" class="btn-outline" style="font-size:13px;">Read Article</a>
+        </div>
+        <div class="resource-card">
+          <span class="resource-type">Docs</span>
+          <h4>Edge Delivery Forms Overview</h4>
+          <p>How to create and publish high-performance forms quickly using Document-Based or WYSIWYG authoring.</p>
+          <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/edge-delivery/build-forms/overview" target="_blank" class="btn-outline" style="font-size:13px;">View Docs</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- SALES -->
+    <div id="tab-sales" class="persona-panel">
+      <div class="persona-intro">
+        <div class="persona-intro-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="#012D61" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="9" cy="7" r="4" stroke="#012D61" stroke-width="1.5" fill="none"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="#012D61" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <h3>Sales</h3>
+          <p>Understand the AEM Forms value proposition, competitive positioning, and business impact metrics to support conversations with internal stakeholders and external partners.</p>
+        </div>
+      </div>
+      <div class="resource-grid">
+        <div class="resource-card">
+          <span class="resource-type">Product Overview</span>
+          <h4>AEM Forms Product Page</h4>
+          <p>Interactive demo, top-level feature overview, and AI agent capability highlights. Good starting point for any briefing.</p>
+          <a href="https://business.adobe.com/products/experience-manager/forms.html" target="_blank" class="btn-outline" style="font-size:13px;">View Overview</a>
+        </div>
+        <div class="resource-card">
+          <span class="resource-type">Business Value</span>
+          <h4>AEM Forms Benefits</h4>
+          <p>Business outcomes: faster enrollment, reduced paper costs, higher form completion, and multi-channel personalization.</p>
+          <a href="https://business.adobe.com/products/experience-manager/forms/benefits.html" target="_blank" class="btn-outline" style="font-size:13px;">Read Guide</a>
+        </div>
+        <div class="resource-card">
+          <span class="resource-type">Innovation Brief</span>
+          <h4>2025 GenAI Innovations</h4>
+          <p>Partner-facing briefing: GenAI authoring, brand governance, agentic optimization, multi-modal filling, and packaging updates.</p>
+          <a href="https://solutionpartners.adobe.com/solution-partners/news/2025/07/adobe-experience-manager-forms-top-innovations.html" target="_blank" class="btn-outline" style="font-size:13px;">Read Brief</a>
+        </div>
+        <div class="resource-card">
+          <span class="resource-type">Market Overview</span>
+          <h4>AEM Forms In-Depth Overview — Axamit</h4>
+          <p>Practitioner article covering workflow, use cases, integration ecosystem, and ROI framing. Strong for stakeholder alignment.</p>
+          <a href="https://axamit.com/blog/adobe-experience-manager/what-is-aem-forms/" target="_blank" class="btn-outline" style="font-size:13px;">Read Article</a>
+        </div>
+        <div class="resource-card">
+          <span class="resource-type">Competitive Context</span>
+          <h4>Edge Delivery Services FAQ</h4>
+          <p>Covers EDS architecture, Lighthouse 100, Marketo embed capability, AEM Assets integration, and historical EDS context.</p>
+          <a href="https://www.aem.live/docs/faq" target="_blank" class="btn-outline" style="font-size:13px;">Read FAQ</a>
+        </div>
+        <div class="resource-card">
+          <span class="resource-type">Video Hub</span>
+          <h4>AEM Forms Tutorials & Videos</h4>
+          <p>Demo-ready video library for product walkthroughs and capability demonstrations in stakeholder conversations.</p>
+          <a href="https://experienceleague.adobe.com/en/docs/experience-manager-learn/forms/overview" target="_blank" class="btn-outline" style="font-size:13px;">Browse Videos</a>
+        </div>
+        <div class="resource-card">
+          <span class="resource-type">Docs</span>
+          <h4>Introduction to AEM Forms</h4>
+          <p>Comprehensive product overview including use case categories, form types, analytics, signature, and offline capabilities.</p>
+          <a href="https://experienceleague.adobe.com/en/docs/experience-manager-65/content/forms/getting-started/introduction-aem-forms" target="_blank" class="btn-outline" style="font-size:13px;">View Docs</a>
+        </div>
+        <div class="resource-card">
+          <span class="resource-type">Deep Dive</span>
+          <h4>AEM Forms Explained — Codilar</h4>
+          <p>Accessible breakdown of capabilities, integration ecosystem, and business outcomes. Good reference for non-technical audiences.</p>
+          <a href="https://www.codilar.com/a-deep-dive-into-aem-forms/" target="_blank" class="btn-outline" style="font-size:13px;">Read Article</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ADMINS -->
+    <div id="tab-admins" class="persona-panel">
+      <div class="persona-intro">
+        <div class="persona-intro-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="3" stroke="#012D61" stroke-width="1.5" fill="none"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" stroke="#012D61" stroke-width="1.5" fill="none"/>
+          </svg>
+        </div>
+        <div>
+          <h3>Admins</h3>
+          <p>Manage AEM Forms environments, apply service packs, configure governance, maintain Forms Portal, manage user permissions, and oversee the Forms Manager console across environments.</p>
+        </div>
+      </div>
+      <div class="resource-grid">
+        <div class="resource-card">
+          <span class="resource-type">Release Notes</span>
+          <h4>AEM Forms Service Pack Installation</h4>
+          <p>Instructions for applying the latest AEM Forms service pack on both JEE and OSGi environments. Updated regularly.</p>
+          <a href="https://experienceleague.adobe.com/en/docs/experience-manager-65/content/release-notes/aem-forms-current-service-pack-installation-instructions" target="_blank" class="btn-outline" style="font-size:13px;">View Guide</a>
+        </div>
+        <div class="resource-card">
+          <span class="resource-type">Docs</span>
+          <h4>Introduction to AEM Forms (Admin Guide)</h4>
+          <p>Full platform overview including Forms Portal, Forms Manager, user access, publishing workflows, and offline Workspace.</p>
+          <a href="https://experienceleague.adobe.com/en/docs/experience-manager-65/content/forms/getting-started/introduction-aem-forms" target="_blank" class="btn-outline" style="font-size:13px;">View Docs</a>
+        </div>
+        <div class="resource-card">
+          <span class="resource-type">Best Practices</span>
+          <h4>Adaptive Forms Best Practices</h4>
+          <p>Setup, project structure, Maven archetype, VLT tooling, template strategy, component customization, and authoring governance.</p>
+          <a href="https://experienceleague.adobe.com/en/docs/experience-manager-65/content/forms/adaptive-forms-basic-authoring/adaptive-forms-best-practices" target="_blank" class="btn-outline" style="font-size:13px;">View Guide</a>
+        </div>
+        <div class="resource-card">
+          <span class="resource-type">Docs</span>
+          <h4>Forms Designer Help</h4>
+          <p>Reference documentation for AEM Forms Designer: quick start, scripting basics, scripting reference, and FormCalc reference.</p>
+          <a href="https://experienceleague.adobe.com/en/docs/experience-manager-65/content/forms/use-forms-designer/forms-designer-help" target="_blank" class="btn-outline" style="font-size:13px;">View Docs</a>
+        </div>
+        <div class="resource-card">
+          <span class="resource-type">Tutorial</span>
+          <h4>Getting Started with Adaptive Forms</h4>
+          <p>Walkthrough of creating a multi-tabbed form, using Tables, Accordion Layout, and Rule Editor. Covers 6.4 and 6.5.</p>
+          <a href="https://experienceleague.adobe.com/en/docs/experience-manager-learn/forms/creating-your-first-adaptive-form/introduction-and-setup" target="_blank" class="btn-outline" style="font-size:13px;">View Tutorial</a>
+        </div>
+        <div class="resource-card">
+          <span class="resource-type">Community Q&amp;A</span>
+          <h4>Core vs Foundation vs EDS Components</h4>
+          <p>Definitive Experience League thread comparing all three component types. Essential for governance and migration planning decisions.</p>
+          <a href="https://experienceleaguecommunities.adobe.com/t5/adobe-experience-manager-forms/what-is-the-difference-between-core-components-foundation/td-p/774912" target="_blank" class="btn-outline" style="font-size:13px;">View Thread</a>
+        </div>
+        <div class="resource-card">
+          <span class="resource-type">Docs</span>
+          <h4>Edge Delivery Services Overview</h4>
+          <p>EDS architecture, GitHub-based code management, CDN configuration, Cloud Manager registration, and operational telemetry.</p>
+          <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/edge-delivery/overview" target="_blank" class="btn-outline" style="font-size:13px;">View Docs</a>
+        </div>
+        <div class="resource-card">
+          <span class="resource-type">Video Hub</span>
+          <h4>AEM Forms Tutorials & Videos</h4>
+          <p>Full official video and tutorial library covering all administrative and configuration capabilities.</p>
+          <a href="https://experienceleague.adobe.com/en/docs/experience-manager-learn/forms/overview" target="_blank" class="btn-outline" style="font-size:13px;">Browse Videos</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================== 5. CONTACT ===================== -->
+<section id="contact">
+  <div class="section-wrap">
+    <div class="section-header">
+      <span class="section-eyebrow">05 — Contact</span>
+      <h2>Get Support &amp; Stay Connected</h2>
+      <p>Whether you need technical help, want to talk to your account team, or are looking to connect with the broader AEM community, you're in the right place.</p>
+    </div>
+
+    <div class="contact-grid">
+      <!-- Adobe Contact -->
+      <div class="contact-card" style="text-align:left;">
+        <div class="contact-icon" style="background:rgba(242,58,29,0.08);margin:0 0 1rem 0;">
+          <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19.5 3H29L19 29L13.5 14.5L19.5 3Z" fill="#FA0F00"/>
+            <path d="M12.5 3H3L13 29L18.5 14.5L12.5 3Z" fill="#FA0F00"/>
+            <path d="M16 17.5L11 29H21L16 17.5Z" fill="#FA0F00" opacity="0.6"/>
+          </svg>
+        </div>
+        <h3>Adobe Contact</h3>
+        <p>Reach your Adobe account team for licensing questions, product roadmap updates, and enterprise support escalations.</p>
+        <div class="contact-detail">Account Executive: <a href="mailto:adobe-mayo@adobe.com">adobe-mayo@adobe.com</a></div>
+        <div class="contact-detail">Enterprise Support: <a href="https://helpx.adobe.com/contact/enterprise-support.html" target="_blank">helpx.adobe.com/enterprise-support</a></div>
+        <div style="margin-top:1.25rem;">
+          <a href="https://helpx.adobe.com/contact/enterprise-support.html" target="_blank" class="btn-outline" style="font-size:13px;">Open Support Case</a>
+        </div>
+      </div>
+
+      <!-- Merkle Contact -->
+      <div class="contact-card" style="text-align:left;">
+        <div class="contact-icon" style="background:rgba(242,58,29,0.06);margin:0 0 1rem 0;">
+          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 639 81" height="20" width="20">
+            <path fill="#F23A1D" d="M43.8,36.4H0l43.8,44.4V36.4z"/>
+          </svg>
+        </div>
+        <h3>Merkle Contact</h3>
+        <p>Your Merkle engagement team for AEM Forms implementation questions, project delivery, and strategic guidance.</p>
+        <div class="contact-detail">Engagement Lead: <a href="mailto:aem-mayo@merkle.com">aem-mayo@merkle.com</a></div>
+        <div class="contact-detail">Adobe Practice: <a href="https://www.merkle.com/en/expertise/adobe.html" target="_blank">merkle.com/adobe</a></div>
+        <div style="margin-top:1.25rem;">
+          <a href="https://www.merkle.com/en/expertise/adobe.html" target="_blank" class="btn-outline" style="font-size:13px;">Adobe Practice Page</a>
+        </div>
+      </div>
+
+      <!-- Forums -->
+      <div class="contact-card" style="text-align:left;">
+        <div class="contact-icon" style="background:rgba(1,45,97,0.07);margin:0 0 1rem 0;">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="#012D61" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <line x1="8" y1="9" x2="16" y2="9" stroke="#012D61" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="8" y1="13" x2="13" y2="13" stroke="#012D61" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Community Forums</h3>
+        <p>Peer support and expert guidance from the Adobe Experience League community. Search existing threads or post a question.</p>
+        <div class="contact-detail"><a href="https://experienceleaguecommunities.adobe.com/t5/adobe-experience-manager-forms/ct-p/adobe-experience-manager-forms-community" target="_blank">AEM Forms Community</a></div>
+        <div class="contact-detail"><a href="https://experienceleague.adobe.com/en/docs/experience-manager-learn/forms/overview" target="_blank">Tutorial Library</a></div>
+        <div class="contact-detail"><a href="https://www.aem.live/docs/faq" target="_blank">Edge Delivery FAQ</a></div>
+        <div style="margin-top:1.25rem;">
+          <a href="https://experienceleaguecommunities.adobe.com/t5/adobe-experience-manager-forms/ct-p/adobe-experience-manager-forms-community" target="_blank" class="btn-outline" style="font-size:13px;">Join the Community</a>
+        </div>
+      </div>
+
+      <!-- Webinars -->
+      <div class="contact-card" style="text-align:left;">
+        <div class="contact-icon" style="background:rgba(1,45,97,0.07);margin:0 0 1rem 0;">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="3" width="20" height="14" rx="2" stroke="#012D61" stroke-width="1.5" fill="none"/>
+            <path d="M8 21h8M12 17v4" stroke="#012D61" stroke-width="1.5" stroke-linecap="round"/>
+            <polygon points="10,8 16,11 10,14" fill="#012D61"/>
+          </svg>
+        </div>
+        <h3>Webinars &amp; Events</h3>
+        <p>Live and recorded sessions from Adobe and Merkle covering AEM Forms capabilities, updates, and implementation guidance.</p>
+        <div class="contact-detail"><a href="https://experienceleague.adobe.com/en/docs/events/experience-manager-gems-recordings/gems2024/edge-delivery-for-aem-forms" target="_blank">AEM Gems: EDS Forms Recording</a></div>
+        <div class="contact-detail"><a href="https://experienceleague.adobe.com/events" target="_blank">Upcoming Adobe Events</a></div>
+        <div class="contact-detail"><a href="https://www.merkle.com/en/thought-leadership/events.html" target="_blank">Merkle Events Calendar</a></div>
+        <div style="margin-top:1.25rem;">
+          <a href="https://experienceleague.adobe.com/events" target="_blank" class="btn-outline" style="font-size:13px;">View Upcoming Webinars</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <!-- Lockup in white -->
+      <div style="display:flex;align-items:center;gap:0;">
+        <svg width="32" height="32" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg">
+          <path d="m42.708,9.4301c.6221.0233,1.2424-.0821,1.8218-.3096.5795-.2275,1.1059-.5721,1.5462-1.0123.4403-.4402.7849-.9666,1.0123-1.5461.2275-.5795.3328-1.1998.3096-1.8219.03-.626-.0705-1.2514-.2949-1.8366-.2244-.5852-.568-1.1173-1.009-1.5627-.441-.4454-.9696-.7943-1.5526-1.0246-.5828-.2303-1.2073-.337-1.8335-.3133-.6302-.0305-1.2598.0712-1.8483.2985-.5886.2273-1.123.5752-1.5693,1.0213-.4461.4461-.794.9806-1.0213,1.5692-.2272.5885-.329,1.2181-.2984,1.8483-.0237.6263.0829,1.2507.3133,1.8336.2303.5829.5792,1.1116,1.0246,1.5525.4454.4409.9776.7845,1.5627,1.009.5851.2244,1.2105.3249,1.8366.2949Zm0-7.6223c1.5727,0,2.5961,1.1512,2.5961,2.9182s-1.0328,2.9182-2.5961,2.9182-2.6055-1.1512-2.6055-2.904,1.0232-2.9324,2.6055-2.9324Zm-18.8023,5.7463h3.8704l.72,1.6817h2.1887L26.5586.2019h-1.3785l-4.1499,9.034h2.1602l.7153-1.6817Zm3.2167-1.5586l-1.2626-2.9694-1.2624,2.9694h2.525Zm-12.3786,1.8949l-2.2881-3.553v4.8984h-2.075V.1971h1.4591l3.4345,5.3626L18.7136.1971h1.4591v9.0387h-2.075v-4.8984l-2.2881,3.553h-1.0659Zm17.798,1.3454h2.1033v-3.2119L38.1271.1971h-2.2881l-2.2313,3.9462L31.3765.1971h-2.3165l3.4819,5.8269v3.2119Zm-16.6137,12.7243v-9.0387h2.1081v7.2954h4.6v1.7433h-6.708Zm10.3747-9.0387h-2.1033v9.034h2.1033v-9.034Zm-13.397,5.9927l1.8523.7296c-.7059,1.587-2.3023,2.5107-4.2541,2.5249-3.065,0-5.1542-2.3686-4.6804-5.5852.1853-.9447.651-1.8115,1.3364-2.4876.6853-.676,1.5585-1.1298,2.5056-1.3022,2.3118-.3126,4.2731.668,5.0499,2.5012l-1.8523.7296c-.1918-.4639-.5224-.8573-.9464-1.1261-.424-.2689-.9207-.4-1.4222-.3756-1.5917,0-2.6244,1.1654-2.6244,2.9324s1.0232,2.9181,2.6244,2.9181c.5009.0209.9968-.1064,1.4257-.3658.4289-.2596.7717-.6399.9856-1.0932Zm27.822-5.9927h-2.1033v9.034h2.1033v-9.034Zm7.5591,7.0599c.4256-.2523.7686-.6232.987-1.0672l1.8523.7437c-.7153,1.587-2.3118,2.5108-4.2635,2.5108-3.065,0-5.1542-2.3686-4.6805-5.5852.1854-.9447.6511-1.8115,1.3364-2.4876.6854-.676,1.5585-1.1298,2.5055-1.3022,2.326-.3128,4.2873.668,5.0452,2.4775l-1.8523.7296c-.1919-.4639-.5224-.8573-.9464-1.1261-.424-.2689-.9208-.4-1.4223-.3756-1.5727,0-2.5961,1.1512-2.5961,2.9181s1.0233,2.9181,2.6245,2.9181c.4944.0215.9843-.1016,1.41-.3539Zm-18.559-7.0599h-1.4023v9.0387h2.075v-5.5142l4.7989,5.5142h1.4023v-9.0387h-2.075v5.5142l-4.7989-5.5142Zm1.5491,21.1141v-5.7843h15.6378v8.8256c0,5.3105-2.5677,8.7166-7.8307,10.3794-.635-.1976-1.2567-.435-1.8618-.7107v.1705c-.7769,4.5289-3.6003,7.5276-8.565,9.0814-4.96-1.5539-7.788-4.5525-8.565-9.0814,0,0-.0237-.0616-.0237-.1705-.6051.2757-1.227.5131-1.8618.7107-5.2632-1.6628-7.8307-5.0737-7.8307-10.3794v-8.8302h15.6614v5.7889h5.2395Zm-13.0855,11.5575c-4.2523-1.7053-5.9632-4.2298-5.9632-8.862v-5.718c0-.24.0954-.4701.265-.6397.1697-.1697.3999-.265.6399-.265h10.152c.24,0,.4701.0953.6399.265.1696.1696.265.3998.265.6397v3.0224h-4.3157v10.7679c-.5438.2984-1.1059.5622-1.6829.7896Zm5.9938-8.8573v-.8432h-1.5444c-.24,0-.4701.0953-.6397.265-.1697.1696-.265.3998-.265.6397v6.7081c1.7148-1.587,2.4492-3.7235,2.4492-6.7696Zm4.472,17.4096c4.2304-1.6817,6.3243-4.0978,6.798-8.1339,0,0,.0094-.0901.0285-.251-2.8188-1.9092-4.2067-4.78-4.2067-8.6787v-1.1844h-5.2347v1.1844c0,3.8987-1.3644,6.7838-4.2067,8.6787.0283.161.0283.251.0283.251.4737,4.0362,2.5629,6.4522,6.7933,8.1339Zm4.4957-17.4096c0,3.0461.7342,5.1827,2.4492,6.7696v-6.7081c0-.1188-.0234-.2365-.0688-.3462-.0455-.1098-.1122-.2095-.1962-.2935-.084-.0841-.1837-.1507-.2935-.1962-.1098-.0455-.2275-.0688-.3462-.0688h-1.5444v.8432Zm5.9452,8.8683c4.2731-1.7055,5.9785-4.2304,5.9785-8.8683v-5.7131c0-.2384-.094-.4671-.2617-.6365-.1676-.1695-.3953-.2659-.6337-.2684h-10.1425c-.24,0-.4701.0953-.6399.265-.1696.1697-.2649.3998-.2649.6399v3.0223h4.2778v10.7679c.5449.299,1.1081.5632,1.6864.7912Z" fill-rule="evenodd" fill="white"/>
+        </svg>
+        <span style="font-family:Georgia,serif;font-size:13px;color:rgba(255,255,255,0.85);margin-left:0.6rem;">Mayo Clinic</span>
+        <span style="margin:0 0.75rem;color:rgba(255,255,255,0.2);">×</span>
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 639 81" height="16">
+          <g>
+            <path fill="white" d="M145.7,81h-17V32.9l-25.5,25.8L77.8,32.9V81h-17V0h9l33.6,34.1L136.7,0h9V81z"/>
+            <path fill="#F23A1D" d="M43.8,36.4H0l43.8,44.4V36.4z"/>
+            <path fill="white" d="M245.6,80.8H168V0h74.3v16.6h-57.2V30h37.6v16.2h-37.6v18.4h60.5V80.8z"/>
+            <path fill="white" d="M350.4,80.8h-19l-20.9-32.9h-27.7v32.9H266V0.4h53.2c7.9,0,14,2,18.8,5.7c5.2,4.2,7.9,10.2,7.9,17.9c0,5.3-1.5,9.9-4.4,14.1c-3.1,4.2-7,7.1-12,8.8L350.4,80.8z M328.6,24c0-2.2-0.7-4-2.2-5.3c-1.5-1.1-4.1-1.8-7.4-1.8h-36.2v14.8H319c3.5,0,5.9-0.7,7.4-2C327.9,27.8,328.6,26,328.6,24z"/>
+            <path fill="white" d="M451.8,80.8h-19.9l-29.5-40.2l-12,10.4v29.8h-17V0.4h17v30l35.2-30h23.6L414.6,30L451.8,80.8z"/>
+            <path fill="white" d="M543.1,80.8h-71.6V0h17v64.6h54.5V80.8z"/>
+            <path fill="white" d="M639,80.8h-77.6V0h74.3v16.6h-57.5V30h37.6v16.2h-37.6v18.4H639V80.8z"/>
+          </g>
+        </svg>
+      </div>
+      <p>AEM Forms education, enablement, and change management resource. Built by Merkle for Mayo Clinic internal teams.</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Sections</h4>
+      <ul>
+        <li><a href="#summary">Summary</a></li>
+        <li><a href="#what-are-aem-forms">What are AEM Forms</a></li>
+        <li><a href="#best-practices">Best Practices</a></li>
+        <li><a href="#education">Education by Persona</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-learn/forms/overview" target="_blank">Video Tutorials</a></li>
+        <li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/forms/forms-overview/latest-innovations" target="_blank">Latest Innovations</a></li>
+        <li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-65/content/forms/adaptive-forms-basic-authoring/adaptive-forms-best-practices" target="_blank">Best Practices Guide</a></li>
+        <li><a href="https://www.aem.live/docs/faq" target="_blank">Edge Delivery FAQ</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Support</h4>
+      <ul>
+        <li><a href="https://helpx.adobe.com/contact/enterprise-support.html" target="_blank">Adobe Enterprise Support</a></li>
+        <li><a href="https://experienceleaguecommunities.adobe.com/t5/adobe-experience-manager-forms/ct-p/adobe-experience-manager-forms-community" target="_blank">AEM Forms Community</a></li>
+        <li><a href="https://experienceleague.adobe.com/events" target="_blank">Adobe Events</a></li>
+        <li><a href="https://www.merkle.com/en/expertise/adobe.html" target="_blank">Merkle Adobe Practice</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2025 Mayo Clinic. Built by Merkle, a dentsu company.</span>
+    <span>Internal use only. Not for external distribution.</span>
+  </div>
+</footer>
+
+<script>
+  function switchTab(persona) {
+    // Deactivate all tabs and panels
+    document.querySelectorAll('.persona-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.persona-panel').forEach(p => p.classList.remove('active'));
+
+    // Activate selected
+    const panels = { developers: 0, marketers: 1, sales: 2, admins: 3 };
+    const tabs = document.querySelectorAll('.persona-tab');
+    tabs[panels[persona]].classList.add('active');
+    document.getElementById('tab-' + persona).classList.add('active');
+  }
+
+  // Smooth active nav highlight on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => {
+          link.style.color = '';
+          link.style.borderBottomColor = '';
+        });
+        const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+        if (active) {
+          active.style.color = 'var(--brand-blue)';
+          active.style.borderBottomColor = 'var(--brand-blue)';
+        }
+      }
+    });
+  }, { threshold: 0.4 });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
